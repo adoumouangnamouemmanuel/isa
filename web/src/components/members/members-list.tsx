@@ -1,0 +1,158 @@
+import { MemberCard } from "@/components/members/member-card"
+
+// Mock data for members
+const members = [
+  {
+    id: 1,
+    name: "Maria Rodriguez",
+    country: "Spain",
+    flag: "🇪🇸",
+    role: "President",
+    major: "Computer Science",
+    year: "Senior",
+    email: "maria.rodriguez@university.edu",
+    linkedin: "https://linkedin.com/in/mariarodriguez",
+    bio: "Passionate about technology and bringing international students together. Leading ISA with a focus on cultural exchange and professional development.",
+    avatar: "/maria-rodriguez-from-spain.jpg",
+    joinedDate: "2021-09-01",
+    committees: ["Executive Board", "Cultural Committee"],
+    languages: ["Spanish", "English", "French"],
+    interests: ["Technology", "Photography", "Travel"],
+  },
+  {
+    id: 2,
+    name: "Chen Wei",
+    country: "China",
+    flag: "🇨🇳",
+    role: "Vice President",
+    major: "Business Administration",
+    year: "Junior",
+    email: "chen.wei@university.edu",
+    linkedin: "https://linkedin.com/in/chenwei",
+    bio: "Business student with a passion for entrepreneurship and cross-cultural collaboration. Helping ISA members navigate academic and professional challenges.",
+    avatar: "/chen-wei-from-china.jpg",
+    joinedDate: "2022-01-15",
+    committees: ["Executive Board", "Professional Development"],
+    languages: ["Mandarin", "English", "Japanese"],
+    interests: ["Business", "Entrepreneurship", "Cooking"],
+  },
+  {
+    id: 3,
+    name: "Priya Patel",
+    country: "India",
+    flag: "🇮🇳",
+    role: "Secretary",
+    major: "Engineering",
+    year: "Senior",
+    email: "priya.patel@university.edu",
+    linkedin: "https://linkedin.com/in/priyapatel",
+    bio: "Engineering student dedicated to creating inclusive spaces for international students. Organizing events that celebrate our diverse backgrounds.",
+    avatar: "/priya-patel-from-india.jpg",
+    joinedDate: "2021-08-20",
+    committees: ["Executive Board", "Events Committee"],
+    languages: ["Hindi", "English", "Gujarati"],
+    interests: ["Engineering", "Dance", "Volunteering"],
+  },
+  {
+    id: 4,
+    name: "Ahmed Hassan",
+    country: "Egypt",
+    flag: "🇪🇬",
+    role: "Treasurer",
+    major: "Medicine",
+    year: "Graduate",
+    email: "ahmed.hassan@university.edu",
+    linkedin: "https://linkedin.com/in/ahmedhassan",
+    bio: "Medical student committed to supporting fellow international students in their academic journey. Managing ISA finances with transparency and care.",
+    avatar: "/ahmed-hassan-from-egypt.jpg",
+    joinedDate: "2020-09-10",
+    committees: ["Executive Board", "Academic Support"],
+    languages: ["Arabic", "English", "French"],
+    interests: ["Medicine", "Soccer", "Reading"],
+  },
+  {
+    id: 5,
+    name: "Sophie Dubois",
+    country: "France",
+    flag: "🇫🇷",
+    role: "Committee Chair",
+    major: "Arts",
+    year: "Sophomore",
+    email: "sophie.dubois@university.edu",
+    linkedin: "https://linkedin.com/in/sophiedubois",
+    bio: "Art student passionate about cultural expression and creative collaboration. Leading the Cultural Committee to showcase our diverse artistic traditions.",
+    avatar: "/sophie-dubois-from-france.jpg",
+    joinedDate: "2023-01-10",
+    committees: ["Cultural Committee"],
+    languages: ["French", "English", "Spanish"],
+    interests: ["Art", "Music", "Theater"],
+  },
+  {
+    id: 6,
+    name: "Yuki Tanaka",
+    country: "Japan",
+    flag: "🇯🇵",
+    role: "Member",
+    major: "Computer Science",
+    year: "Junior",
+    email: "yuki.tanaka@university.edu",
+    linkedin: "https://linkedin.com/in/yukitanaka",
+    bio: "Computer Science student interested in AI and machine learning. Active member participating in tech workshops and cultural exchange events.",
+    avatar: "/yuki-tanaka-from-japan.jpg",
+    joinedDate: "2022-08-25",
+    committees: ["Tech Committee"],
+    languages: ["Japanese", "English"],
+    interests: ["Programming", "Anime", "Gaming"],
+  },
+  {
+    id: 7,
+    name: "Lars Andersen",
+    country: "Norway",
+    flag: "🇳🇴",
+    role: "Member",
+    major: "Engineering",
+    year: "Freshman",
+    email: "lars.andersen@university.edu",
+    linkedin: "https://linkedin.com/in/larsandersen",
+    bio: "Engineering freshman excited about sustainable technology and environmental solutions. New to ISA but eager to contribute to our community.",
+    avatar: "/lars-andersen-from-norway.jpg",
+    joinedDate: "2023-09-01",
+    committees: ["Environmental Committee"],
+    languages: ["Norwegian", "English", "German"],
+    interests: ["Sustainability", "Hiking", "Technology"],
+  },
+  {
+    id: 8,
+    name: "Fatima Al-Zahra",
+    country: "Morocco",
+    flag: "🇲🇦",
+    role: "Committee Chair",
+    major: "Business",
+    year: "Senior",
+    email: "fatima.alzahra@university.edu",
+    linkedin: "https://linkedin.com/in/fatimaalzahra",
+    bio: "Business student leading the Professional Development Committee. Helping international students build careers and professional networks in the US.",
+    avatar: "/fatima-alzahra-from-morocco.jpg",
+    joinedDate: "2021-01-15",
+    committees: ["Professional Development"],
+    languages: ["Arabic", "French", "English"],
+    interests: ["Business", "Mentoring", "Travel"],
+  },
+]
+
+export function MembersList() {
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-foreground">Members Directory</h2>
+        <span className="text-sm text-muted-foreground">{members.length} members</span>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {members.map((member) => (
+          <MemberCard key={member.id} member={member} />
+        ))}
+      </div>
+    </div>
+  )
+}
