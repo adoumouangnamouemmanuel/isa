@@ -1,45 +1,12 @@
-import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
+import { getLatestUpcomingEvents } from "@/data/events";
+import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export function UpcomingEventsSection() {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "International Food Festival",
-      date: "March 15, 2024",
-      time: "6:00 PM - 9:00 PM",
-      location: "Student Center Plaza",
-      category: "Cultural",
-      description:
-        "Taste authentic dishes from around the world prepared by our international students.",
-      attendees: 120,
-    },
-    {
-      id: 2,
-      title: "Career Workshop: Networking in the US",
-      date: "March 20, 2024",
-      time: "2:00 PM - 4:00 PM",
-      location: "Business Building, Room 201",
-      category: "Professional",
-      description:
-        "Learn effective networking strategies and build professional connections.",
-      attendees: 45,
-    },
-    {
-      id: 3,
-      title: "Cultural Night: Celebrating Holi",
-      date: "March 25, 2024",
-      time: "7:00 PM - 10:00 PM",
-      location: "University Auditorium",
-      category: "Cultural",
-      description:
-        "Join us for a vibrant celebration of the Hindu festival of colors.",
-      attendees: 200,
-    },
-  ];
+  const upcomingEvents = getLatestUpcomingEvents(3);
 
   return (
     <section className="py-20">
@@ -72,10 +39,15 @@ export function UpcomingEventsSection() {
                 <p className="text-muted-foreground mb-4 text-pretty">
                   {event.description}
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Calendar className="mr-2 h-4 w-4" />
-                    {event.date}
+                    {new Date(event.date).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="mr-2 h-4 w-4" />
@@ -86,6 +58,9 @@ export function UpcomingEventsSection() {
                     {event.location}
                   </div>
                 </div>
+                <Button asChild variant="outline" className="w-full">
+                  <Link href="/events">View Event Details</Link>
+                </Button>
               </CardContent>
             </Card>
           ))}

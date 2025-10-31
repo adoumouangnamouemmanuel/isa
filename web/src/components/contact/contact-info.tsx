@@ -1,58 +1,64 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Mail, MapPin, Clock, Phone, MessageCircle, Users } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, MapPin, MessageCircle, Phone, Users } from "lucide-react";
+import Link from "next/link";
 
 export function ContactInfo() {
   return (
     <div className="space-y-6">
       {/* Contact Information */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl text-foreground">Contact Information</CardTitle>
-          <p className="text-muted-foreground">Get in touch with us through any of these channels.</p>
+      <Card className="border-border/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl text-foreground font-bold">
+            Contact Information
+          </CardTitle>
+          <p className="text-muted-foreground">
+            Get in touch with us through any of these channels.
+          </p>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-start space-x-3">
-            <Mail className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
-            <div>
-              <p className="font-medium text-foreground">Email</p>
-              <p className="text-sm text-muted-foreground">isa@university.edu</p>
+        <CardContent className="space-y-5">
+          <a
+            href="mailto:isa@university.edu"
+            className="flex items-start space-x-4 p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="bg-primary/10 p-3 rounded-lg group-hover:bg-primary/20 transition-colors">
+              <Mail className="h-5 w-5 text-primary" />
             </div>
-          </div>
-
-          <div className="flex items-start space-x-3">
-            <Phone className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
             <div>
-              <p className="font-medium text-foreground">Phone</p>
-              <p className="text-sm text-muted-foreground">(555) 123-4567</p>
-            </div>
-          </div>
-
-          <div className="flex items-start space-x-3">
-            <MapPin className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
-            <div>
-              <p className="font-medium text-foreground">Office Location</p>
-              <p className="text-sm text-muted-foreground">
-                Student Union Building, Room 205
-                <br />
-                123 University Ave
-                <br />
-                University City, State 12345
+              <p className="font-semibold text-foreground mb-1">Email</p>
+              <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                isa@ashesi.edu.gh
               </p>
             </div>
-          </div>
+          </a>
 
-          <div className="flex items-start space-x-3">
-            <Clock className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
+          <a
+            href="tel:+15551234567"
+            className="flex items-start space-x-4 p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="bg-primary/10 p-3 rounded-lg group-hover:bg-primary/20 transition-colors">
+              <Phone className="h-5 w-5 text-primary" />
+            </div>
             <div>
-              <p className="font-medium text-foreground">Office Hours</p>
-              <p className="text-sm text-muted-foreground">
-                Monday - Friday: 9:00 AM - 5:00 PM
+              <p className="font-semibold text-foreground mb-1">Phone</p>
+              <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                +233 50 367 3195
+              </p>
+            </div>
+          </a>
+
+          <div className="flex items-start space-x-4 p-4 rounded-lg border border-border/50 bg-muted/30">
+            <div className="bg-primary/10 p-3 rounded-lg">
+              <MapPin className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-semibold text-foreground mb-1">
+                Office Location
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ashesi University Campus
                 <br />
-                Saturday: 10:00 AM - 2:00 PM
-                <br />
-                Sunday: Closed
+                1 University Avenue, Berekuso
               </p>
             </div>
           </div>
@@ -60,37 +66,74 @@ export function ContactInfo() {
       </Card>
 
       {/* Social Media & Quick Links */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl text-foreground">Connect With Us</CardTitle>
-          <p className="text-muted-foreground">Follow us on social media for the latest updates.</p>
+      <Card className="border-border/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl text-foreground font-bold">
+            Connect With Us
+          </CardTitle>
+          <p className="text-muted-foreground">
+            Follow us on social media for the latest updates.
+          </p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
-            <Button asChild variant="outline" size="sm" className="bg-transparent">
-              <Link href="https://instagram.com/isa_university" target="_blank" rel="noopener noreferrer">
+            <Button
+              asChild
+              variant="outline"
+              className="h-12 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+            >
+              <Link
+                href="https://instagram.com/isa_university"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <MessageCircle className="mr-2 h-4 w-4" />
                 Instagram
               </Link>
             </Button>
-            <Button asChild variant="outline" size="sm" className="bg-transparent">
-              <Link href="https://facebook.com/isa.university" target="_blank" rel="noopener noreferrer">
+            <Button
+              asChild
+              variant="outline"
+              className="h-12 border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+            >
+              <Link
+                href="https://facebook.com/isa.university"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Users className="mr-2 h-4 w-4" />
                 Facebook
               </Link>
             </Button>
           </div>
 
-          <div className="pt-4 border-t">
-            <h4 className="font-medium text-foreground mb-3">Quick Actions</h4>
+          <div className="pt-4 border-t border-border/50">
+            <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wide">
+              Quick Actions
+            </h4>
             <div className="space-y-2">
-              <Button asChild variant="ghost" size="sm" className="w-full justify-start">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="w-full justify-start hover:bg-primary/10 hover:text-primary transition-colors"
+              >
                 <Link href="/events">View Upcoming Events</Link>
               </Button>
-              <Button asChild variant="ghost" size="sm" className="w-full justify-start">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="w-full justify-start hover:bg-primary/10 hover:text-primary transition-colors"
+              >
                 <Link href="/members">Browse Member Directory</Link>
               </Button>
-              <Button asChild variant="ghost" size="sm" className="w-full justify-start">
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="w-full justify-start hover:bg-primary/10 hover:text-primary transition-colors"
+              >
                 <Link href="/resources">Access Resources</Link>
               </Button>
             </div>
@@ -99,31 +142,51 @@ export function ContactInfo() {
       </Card>
 
       {/* FAQ Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl text-foreground">Frequently Asked Questions</CardTitle>
+      <Card className="border-border/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl text-foreground font-bold">
+            Frequently Asked Questions
+          </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <h4 className="font-medium text-foreground text-sm mb-1">How do I join ISA?</h4>
-            <p className="text-sm text-muted-foreground">
-              Simply attend one of our events or contact us directly. Membership is free for all international students.
+        <CardContent className="space-y-5">
+          <div className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h4 className="font-semibold text-foreground mb-2 flex items-center">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold mr-2">
+                Q
+              </span>
+              How do I join ISA?
+            </h4>
+            <p className="text-sm text-muted-foreground leading-relaxed ml-8">
+              Simply attend one of our events or contact us directly. Membership
+              is free for all international students.
             </p>
           </div>
-          <div>
-            <h4 className="font-medium text-foreground text-sm mb-1">When do you meet?</h4>
-            <p className="text-sm text-muted-foreground">
-              We hold general meetings every two weeks and organize various events throughout the semester.
+          <div className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h4 className="font-semibold text-foreground mb-2 flex items-center">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold mr-2">
+                Q
+              </span>
+              When do you meet?
+            </h4>
+            <p className="text-sm text-muted-foreground leading-relaxed ml-8">
+              We hold general meetings every two weeks and organize various
+              events throughout the semester.
             </p>
           </div>
-          <div>
-            <h4 className="font-medium text-foreground text-sm mb-1">Can I volunteer?</h4>
-            <p className="text-sm text-muted-foreground">
-              We're always looking for volunteers to help with events and activities. Contact us to learn more.
+          <div className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
+            <h4 className="font-semibold text-foreground mb-2 flex items-center">
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold mr-2">
+                Q
+              </span>
+              Can I volunteer?
+            </h4>
+            <p className="text-sm text-muted-foreground leading-relaxed ml-8">
+              We&apos;re always looking for volunteers to help with events and
+              activities. Contact us to learn more.
             </p>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -4,83 +4,83 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match ISA design brief with emerald green theme */
-  --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.35 0 0); /* Dark gray text (#475569) */
-  --card: oklch(0.97 0 0); /* Light gray card background (#f1f5f9) */
-  --card-foreground: oklch(0.35 0 0); /* Dark gray text on cards */
-  --popover: oklch(1 0 0); /* White popover background */
-  --popover-foreground: oklch(0.35 0 0); /* Dark gray popover text */
-  --primary: oklch(0.45 0.15 160); /* Emerald-600 (#059669) */
-  --primary-foreground: oklch(1 0 0); /* White text on primary */
-  --secondary: oklch(0.55 0.15 160); /* Emerald-500 (#10b981) */
-  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
-  --muted: oklch(0.97 0 0); /* Light gray muted background */
-  --muted-foreground: oklch(0.35 0 0); /* Dark gray muted text */
-  --accent: oklch(0.55 0.15 160); /* Emerald-500 accent */
-  --accent-foreground: oklch(1 0 0); /* White text on accent */
-  --destructive: oklch(0.577 0.245 27.325); /* Red for errors */
-  --destructive-foreground: oklch(1 0 0); /* White text on destructive */
-  --border: oklch(0.9 0 0); /* Light border (#e2e8f0) */
-  --input: oklch(1 0 0); /* White input background */
-  --ring: oklch(0.45 0.15 160 / 0.5); /* Emerald focus ring */
-  --chart-1: oklch(0.45 0.15 160); /* Emerald chart color */
-  --chart-2: oklch(0.55 0.15 160); /* Light emerald chart color */
-  --chart-3: oklch(0.4 0 0); /* Dark gray chart color */
-  --chart-4: oklch(0.6 0.2 270); /* Purple chart color */
-  --chart-5: oklch(0.3 0 0); /* Very dark gray chart color */
-  --radius: 0.5rem; /* Standard corner rounding */
-  --sidebar: oklch(0.97 0 0); /* Light gray sidebar */
-  --sidebar-foreground: oklch(0.35 0 0); /* Dark gray sidebar text */
-  --sidebar-primary: oklch(1 0 0); /* White sidebar primary */
-  --sidebar-primary-foreground: oklch(0.45 0.15 160); /* Emerald sidebar primary text */
-  --sidebar-accent: oklch(0.55 0.15 160); /* Emerald sidebar accent */
-  --sidebar-accent-foreground: oklch(1 0 0); /* White sidebar accent text */
-  --sidebar-border: oklch(0.9 0 0); /* Light sidebar border */
-  --sidebar-ring: oklch(0.45 0.15 160 / 0.5); /* Emerald sidebar focus ring */
-  --font-inter: "Inter", sans-serif; /* Inter font */
+  /* Updated to premium emerald-based color system */
+  --background: #ffffff;
+  --foreground: #475569;
+  --card: #f1f5f9;
+  --card-foreground: #374151;
+  --popover: #ffffff;
+  --popover-foreground: #475569;
+  --primary: #059669; /* Emerald-600 for premium feel */
+  --primary-foreground: #ffffff;
+  --secondary: #10b981; /* Emerald-500 for secondary actions */
+  --secondary-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #374151;
+  --accent: #10b981;
+  --accent-foreground: #ffffff;
+  --destructive: #be123c;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #f1f5f9;
+  --ring: rgba(9, 153, 105, 0.5);
+  --chart-1: #6366f1;
+  --chart-2: #10b981;
+  --chart-3: #be123c;
+  --chart-4: #f59e0b;
+  --chart-5: #3b82f6;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #374151;
+  --sidebar-primary: #059669;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #10b981;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: rgba(9, 153, 105, 0.5);
+  --font-inter: "Inter", sans-serif;
 }
 
 .dark {
-  /* Updated dark mode tokens to maintain emerald theme */
-  --background: oklch(0.1 0 0); /* Very dark background */
-  --foreground: oklch(0.95 0 0); /* Light text */
-  --card: oklch(0.15 0 0); /* Dark card background */
-  --card-foreground: oklch(0.95 0 0); /* Light card text */
-  --popover: oklch(0.1 0 0); /* Dark popover background */
-  --popover-foreground: oklch(0.95 0 0); /* Light popover text */
-  --primary: oklch(0.55 0.15 160); /* Brighter emerald for dark mode */
-  --primary-foreground: oklch(0.1 0 0); /* Dark text on primary */
-  --secondary: oklch(0.45 0.15 160); /* Darker emerald secondary */
-  --secondary-foreground: oklch(0.95 0 0); /* Light text on secondary */
-  --muted: oklch(0.2 0 0); /* Dark muted background */
-  --muted-foreground: oklch(0.7 0 0); /* Medium gray muted text */
-  --accent: oklch(0.55 0.15 160); /* Bright emerald accent */
-  --accent-foreground: oklch(0.1 0 0); /* Dark text on accent */
-  --destructive: oklch(0.6 0.25 25); /* Bright red for dark mode */
-  --destructive-foreground: oklch(0.95 0 0); /* Light text on destructive */
-  --border: oklch(0.2 0 0); /* Dark border */
-  --input: oklch(0.15 0 0); /* Dark input background */
-  --ring: oklch(0.55 0.15 160 / 0.5); /* Bright emerald focus ring */
-  --chart-1: oklch(0.55 0.15 160); /* Bright emerald chart */
-  --chart-2: oklch(0.65 0.15 160); /* Very bright emerald chart */
-  --chart-3: oklch(0.7 0 0); /* Light gray chart */
-  --chart-4: oklch(0.7 0.2 270); /* Bright purple chart */
-  --chart-5: oklch(0.8 0 0); /* Very light gray chart */
-  --sidebar: oklch(0.15 0 0); /* Dark sidebar */
-  --sidebar-foreground: oklch(0.95 0 0); /* Light sidebar text */
-  --sidebar-primary: oklch(0.55 0.15 160); /* Emerald sidebar primary */
-  --sidebar-primary-foreground: oklch(0.1 0 0); /* Dark sidebar primary text */
-  --sidebar-accent: oklch(0.2 0 0); /* Dark sidebar accent */
-  --sidebar-accent-foreground: oklch(0.95 0 0); /* Light sidebar accent text */
-  --sidebar-border: oklch(0.2 0 0); /* Dark sidebar border */
-  --sidebar-ring: oklch(0.55 0.15 160 / 0.5); /* Emerald sidebar focus ring */
+  /* Updated dark mode with premium emerald theme */
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --popover: #0f172a;
+  --popover-foreground: #f1f5f9;
+  --primary: #944012; /* Brighter emerald for dark mode */
+  --primary-foreground: #0f172a;
+  --secondary: #e56030; /* Lighter emerald secondary */
+  --secondary-foreground: #0f172a;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #34d399;
+  --accent-foreground: #0f172a;
+  --destructive: #f87171;
+  --destructive-foreground: #f1f5f9;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: rgba(16, 185, 129, 0.5);
+  --chart-1: #6366f1;
+  --chart-2: #10b981;
+  --chart-3: #f87171;
+  --chart-4: #fbbf24;
+  --chart-5: #60a5fa;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #0f172a;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: #334155;
+  --sidebar-ring: rgba(223, 96, 42, 0.5);
 }
 
 @theme inline {
-  /* Updated font variables to use Inter instead of Geist fonts */
   --font-sans: var(--font-inter);
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+    "Liberation Mono", Menlo, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -125,5 +125,129 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced premium animation utilities */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-gradient {
+    animation: gradient 4s linear infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+  }
+}
+
+/* Enhanced keyframe animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.6),
+      0 0 60px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fade in animation for page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Rotate animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

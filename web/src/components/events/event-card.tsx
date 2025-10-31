@@ -1,130 +1,109 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Calendar, Clock, MapPin, Users, User } from "lucide-react"
-import { cn } from "@/lib/utils"
-
-interface Event {
-  id: number
-  title: string
-  date: string
-  time: string
-  location: string
-  category: string
-  description: string
-  attendees: number
-  maxAttendees: number
-  image: string
-  isUpcoming: boolean
-  organizer: string
-  tags: string[]
-}
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Event } from "@/data/events";
+import { cn } from "@/lib/utils";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import Image from "next/image";
 
 interface EventCardProps {
-  event: Event
+  event: Event;
+  onViewDetails?: (event: Event) => void;
 }
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, onViewDetails }: EventCardProps) {
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-US", {
-      weekday: "short",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    })
-  }
+    const date = new Date(dateString);
+    return {
+      day: date.getDate(),
+      month: date.toLocaleDateString("en-US", { month: "short" }),
+      weekday: date.toLocaleDateString("en-US", { weekday: "short" }),
+    };
+  };
 
-  const attendancePercentage = (event.attendees / event.maxAttendees) * 100
+  const attendancePercentage = (event.attendees / event.maxAttendees) * 100;
+  const dateInfo = formatDate(event.date);
 
   return (
-    <Card className={cn("hover:shadow-lg transition-shadow", !event.isUpcoming && "opacity-75")}>
-      <CardHeader className="p-0">
-        <div className="relative">
-          <img
-            src={event.image || "/placeholder.svg?height=200&width=400"}
-            alt={event.title}
-            className="w-full h-48 object-cover rounded-t-lg"
-          />
-          <div className="absolute top-3 left-3">
-            <Badge variant={event.isUpcoming ? "default" : "secondary"}>{event.category}</Badge>
-          </div>
-          {!event.isUpcoming && (
-            <div className="absolute top-3 right-3">
-              <Badge variant="outline" className="bg-background/80">
-                Past Event
-              </Badge>
-            </div>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="p-6">
-        <h3 className="text-xl font-semibold text-foreground mb-2 text-balance">{event.title}</h3>
-        <p className="text-muted-foreground mb-4 text-sm text-pretty">{event.description}</p>
+    <Card
+      className={cn(
+        "group overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30",
+        !event.isUpcoming && "opacity-75"
+      )}
+    >
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
+        <Image
+          src={event.image || `/placeholder.svg`}
+          alt={event.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-        <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="mr-2 h-4 w-4" />
-            {formatDate(event.date)}
-          </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Clock className="mr-2 h-4 w-4" />
-            {event.time}
-          </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <MapPin className="mr-2 h-4 w-4" />
-            {event.location}
-          </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <User className="mr-2 h-4 w-4" />
-            {event.organizer}
+        <div className="absolute top-3 left-3 bg-background/95 backdrop-blur-sm rounded-lg px-3 py-2 text-center shadow-md">
+          <div className="flex items-center gap-1.5">
+            <Calendar className="h-3.5 w-3.5 text-primary" />
+            <span className="text-sm font-semibold text-foreground">
+              {dateInfo.month} {dateInfo.day}
+            </span>
           </div>
         </div>
 
-        {/* Attendance */}
+        <div className="absolute top-3 right-3">
+          <Badge
+            variant={event.isUpcoming ? "default" : "secondary"}
+            className="text-xs"
+          >
+            {event.category}
+          </Badge>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 className="text-lg font-bold text-white leading-tight line-clamp-2">
+            {event.title}
+          </h3>
+        </div>
+      </div>
+
+      <CardContent className="p-4">
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed">
+          {event.description}
+        </p>
+
+        <div className="space-y-2 mb-4 text-sm">
+          <div className="flex items-center text-muted-foreground">
+            <Clock className="mr-2 h-4 w-4 text-primary shrink-0" />
+            <span className="truncate">{event.time}</span>
+          </div>
+          <div className="flex items-center text-muted-foreground">
+            <MapPin className="mr-2 h-4 w-4 text-primary shrink-0" />
+            <span className="truncate">{event.location}</span>
+          </div>
+          <div className="flex items-center text-muted-foreground">
+            <Users className="mr-2 h-4 w-4 text-primary shrink-0" />
+            <span>
+              {event.attendees}/{event.maxAttendees} attendees
+            </span>
+          </div>
+        </div>
+
         <div className="mb-4">
-          <div className="flex items-center justify-between text-sm mb-1">
-            <span className="text-muted-foreground flex items-center">
-              <Users className="mr-1 h-4 w-4" />
-              Attendees
-            </span>
-            <span className="text-foreground font-medium">
-              {event.attendees}/{event.maxAttendees}
-            </span>
-          </div>
-          <div className="w-full bg-muted rounded-full h-2">
+          <div className="w-full bg-muted/50 rounded-full h-1.5 overflow-hidden">
             <div
-              className="bg-primary h-2 rounded-full transition-all"
+              className="bg-gradient-to-r from-primary to-primary/60 h-1.5 rounded-full transition-all duration-500"
               style={{ width: `${Math.min(attendancePercentage, 100)}%` }}
             />
           </div>
         </div>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1 mb-4">
-          {event.tags.slice(0, 3).map((tag, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {tag}
-            </Badge>
-          ))}
-          {event.tags.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{event.tags.length - 3}
-            </Badge>
-          )}
-        </div>
-
-        {/* Action Button */}
-        {event.isUpcoming ? (
-          <Button className="w-full" disabled={event.attendees >= event.maxAttendees}>
-            {event.attendees >= event.maxAttendees ? "Event Full" : "Register"}
-          </Button>
-        ) : (
-          <Button variant="outline" className="w-full bg-transparent">
-            View Details
-          </Button>
-        )}
+        <Button
+          variant={event.isUpcoming ? "default" : "outline"}
+          className="w-full cursor-pointer"
+          onClick={() => onViewDetails?.(event)}
+        >
+          View Event Details
+        </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

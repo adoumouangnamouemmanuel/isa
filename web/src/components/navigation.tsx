@@ -1,101 +1,223 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Menu, Users, Calendar, BookOpen, Phone, Home } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import {
+  BookOpen,
+  Calendar,
+  Home,
+  Image as ImageIcon,
+  Menu,
+  Phone,
+  Shield,
+  Sparkles,
+  Users,
+  X,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
   { name: "Events", href: "/events", icon: Calendar },
   { name: "Members", href: "/members", icon: Users },
+  { name: "Executives", href: "/executives", icon: Shield },
+  { name: "Gallery", href: "/gallery", icon: ImageIcon },
   { name: "Resources", href: "/resources", icon: BookOpen },
   { name: "Contact", href: "/contact", icon: Phone },
-]
+];
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        // Mobile: always solid background
+        "bg-background shadow-lg border-b border-border/50 lg:shadow-none",
+        // Desktop: transparent with blur when scrolled
+        scrolled
+          ? "lg:bg-background/80 lg:backdrop-blur-xl lg:shadow-lg lg:border-b lg:border-border/50"
+          : "lg:bg-background/60 lg:backdrop-blur-md lg:border-b lg:border-transparent"
+      )}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Users className="h-5 w-5" />
+        <div className="flex h-20 items-center justify-between">
+          {/* Enhanced Logo */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative flex h-11 w-11 items-center justify-center rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <Image
+                src="/icons/logo.png"
+                alt="ISA Logo"
+                width={44}
+                height={44}
+                className="object-contain bg-white"
+              />
             </div>
-            <span className="text-xl font-bold text-foreground">ISA</span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-black text-foreground tracking-tight group-hover:text-primary transition-colors duration-300">
+                ISA
+              </span>
+              <span className="text-[10px] font-semibold text-muted-foreground tracking-wide -mt-1">
+                ASHESI
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          {/* Enhanced Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-2">
             {navigation.map((item) => {
-              const Icon = item.icon
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                    pathname === item.href ? "bg-accent text-accent-foreground" : "text-muted-foreground",
+                    "relative flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 group",
+                    isActive
+                      ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
                   )}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon
+                    className={cn(
+                      "h-4 w-4 transition-transform duration-300",
+                      isActive && "animate-pulse"
+                    )}
+                  />
                   <span>{item.name}</span>
+                  {isActive && (
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 to-secondary/20 blur-xl -z-10 animate-pulse"></div>
+                  )}
                 </Link>
-              )
+              );
             })}
           </nav>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Enhanced Desktop Actions */}
+          <div className="hidden lg:flex items-center space-x-4">
             <ThemeToggle />
-            <Button asChild>
-              <Link href="/join">Join ISA</Link>
+            <Button
+              asChild
+              className="relative bg-gradient-to-r from-primary via-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden"
+            >
+              <Link href="/join" className="flex items-center space-x-2">
+                <Sparkles className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
+                <span>Join ISA</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              </Link>
             </Button>
           </div>
 
-          {/* Mobile Navigation */}
-          <div className="flex md:hidden items-center space-x-2">
+          {/* Enhanced Mobile Navigation */}
+          <div className="flex lg:hidden items-center space-x-3">
             <ThemeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
+              <SheetTrigger
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-muted transition-all duration-300 hover:scale-105"
+                aria-label="Toggle menu"
+              >
+                {isOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+                <span className="sr-only">Toggle menu</span>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <div className="flex flex-col space-y-4 mt-8">
-                  {navigation.map((item) => {
-                    const Icon = item.icon
-                    return (
+              <SheetContent
+                side="right"
+                className="w-[320px] sm:w-[400px] bg-background/95 backdrop-blur-xl border-l border-border/50"
+              >
+                <div className="flex flex-col h-full">
+                  {/* Mobile Menu Header */}
+                  <div className="flex items-center space-x-3 mb-8 pb-6 border-b border-border/50">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/icons/logo.png"
+                        alt="ISA Logo"
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-black text-foreground">
+                        ISA
+                      </span>
+                      <span className="text-xs font-semibold text-muted-foreground">
+                        Ashesi University
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Mobile Menu Items */}
+                  <div className="flex flex-col space-y-2 flex-1">
+                    {navigation.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className={cn(
+                            "relative flex items-center space-x-3 px-5 py-4 rounded-xl text-base font-semibold transition-all duration-300",
+                            isActive
+                              ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/80 hover:scale-105"
+                          )}
+                        >
+                          <Icon
+                            className={cn(
+                              "h-5 w-5",
+                              isActive && "animate-pulse"
+                            )}
+                          />
+                          <span>{item.name}</span>
+                          {isActive && (
+                            <div className="absolute right-4">
+                              <div className="h-2 w-2 rounded-full bg-primary-foreground animate-pulse"></div>
+                            </div>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Mobile Menu Footer */}
+                  <div className="pt-6 border-t border-border/50 space-y-3">
+                    <Button
+                      asChild
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg h-12 text-base"
+                    >
                       <Link
-                        key={item.name}
-                        href={item.href}
+                        href="/join"
                         onClick={() => setIsOpen(false)}
-                        className={cn(
-                          "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                          pathname === item.href ? "bg-accent text-accent-foreground" : "text-muted-foreground",
-                        )}
+                        className="flex items-center justify-center"
                       >
-                        <Icon className="h-5 w-5" />
-                        <span>{item.name}</span>
-                      </Link>
-                    )
-                  })}
-                  <div className="pt-4 border-t">
-                    <Button asChild className="w-full">
-                      <Link href="/join" onClick={() => setIsOpen(false)}>
-                        Join ISA
+                        <Sparkles className="mr-2 h-5 w-5" />
+                        Join ISA Today
                       </Link>
                     </Button>
+                    <p className="text-xs text-center text-muted-foreground px-4">
+                      Join our community of 500+ international students
+                    </p>
                   </div>
                 </div>
               </SheetContent>
@@ -104,5 +226,5 @@ export function Navigation() {
         </div>
       </div>
     </header>
-  )
+  );
 }

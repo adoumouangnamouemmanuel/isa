@@ -1,35 +1,91 @@
-import { Mail, MessageSquare, Users } from "lucide-react"
+"use client";
+
+import { Mail, MessageSquare, Phone } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const backgroundImages = [
+  "/contact/contact1.jpg",
+  "/contact/contact2.jpg",
+  "/contact/contact3.jpg",
+  "/contact/contact4.jpg",
+  "/contact/contact5.jpg ",
+];
 
 export function ContactHeader() {
-  return (
-    <section className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 py-16">
-      <div className="container mx-auto px-4 text-center">
-        <div className="flex justify-center mb-6">
-          <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-full">
-            <MessageSquare className="h-12 w-12 text-emerald-600 dark:text-emerald-400" />
-          </div>
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">Get in Touch</h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
-          Have questions, suggestions, or want to get involved? We'd love to hear from you. Reach out to the ISA team
-          and we'll get back to you as soon as possible.
-        </p>
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-        <div className="flex flex-wrap justify-center gap-8 mt-12">
-          <div className="flex items-center text-emerald-600 dark:text-emerald-400">
-            <Mail className="mr-2 h-5 w-5" />
-            <span className="font-medium">Quick Response</span>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative bg-gradient-to-br from-primary/5 via-primary/10 to-background py-20 border-b overflow-hidden">
+      {/* Background Images Carousel */}
+      <div className="absolute inset-0">
+        {backgroundImages.map((image, index) => (
+          <div
+            key={image}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={image}
+              alt={`ISA Background ${index + 1}`}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
           </div>
-          <div className="flex items-center text-emerald-600 dark:text-emerald-400">
-            <Users className="mr-2 h-5 w-5" />
-            <span className="font-medium">Community Support</span>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
+      </div>
+
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="flex justify-center mb-6">
+            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20">
+              <MessageSquare className="h-12 w-12 text-white" />
+            </div>
           </div>
-          <div className="flex items-center text-emerald-600 dark:text-emerald-400">
-            <MessageSquare className="mr-2 h-5 w-5" />
-            <span className="font-medium">Open Communication</span>
+
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            Get in Touch
+          </h1>
+          <p className="mb-10 text-lg text-white/90 max-w-2xl mx-auto">
+            Have questions or want to get involved? We&apos;d love to hear from
+            you
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
+              <Mail className="h-4 w-4 text-white" />
+              <span className="text-sm font-medium text-white">
+                Quick Response
+              </span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
+              <Phone className="h-4 w-4 text-white" />
+              <span className="text-sm font-medium text-white">
+                24/7 Support
+              </span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
+              <MessageSquare className="h-4 w-4 text-white" />
+              <span className="text-sm font-medium text-white">
+                Open Communication
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

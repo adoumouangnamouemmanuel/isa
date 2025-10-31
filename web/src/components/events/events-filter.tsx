@@ -1,114 +1,126 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search, Filter, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useEventFilters } from "@/contexts/event-filter-context";
+import { cn } from "@/lib/utils";
+import {
+  BookOpen,
+  Briefcase,
+  PartyPopper,
+  Search,
+  Users,
+  X,
+} from "lucide-react";
 
-const categories = ["All", "Cultural", "Professional", "Social", "Academic", "Sports", "Workshop"]
-const timeFilters = ["All Time", "Upcoming", "This Month", "Past Events"]
+const categories = [
+  { name: "All", icon: PartyPopper },
+  { name: "Cultural", icon: Users },
+  { name: "Professional", icon: Briefcase },
+  { name: "Social", icon: PartyPopper },
+  { name: "Academic", icon: BookOpen },
+];
+
+const timeFilters = [
+  { name: "Upcoming" },
+  { name: "This Month" },
+  { name: "Past Events" },
+];
 
 export function EventsFilter() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [selectedTime, setSelectedTime] = useState("All Time")
-  const [searchQuery, setSearchQuery] = useState("")
+  const { filters, setCategory, setTimeFilter, setSearchQuery, clearFilters } =
+    useEventFilters();
 
-  const clearFilters = () => {
-    setSelectedCategory("All")
-    setSelectedTime("All Time")
-    setSearchQuery("")
-  }
-
-  const hasActiveFilters = selectedCategory !== "All" || selectedTime !== "All Time" || searchQuery !== ""
+  const hasActiveFilters =
+    filters.category !== "All" || filters.searchQuery !== "";
 
   return (
-    <div className="mb-8 space-y-6">
+    <div className="mb-10 space-y-6">
       {/* Search Bar */}
-      <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <div className="relative max-w-2xl mx-auto">
+        <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
         <Input
           placeholder="Search events..."
-          value={searchQuery}
+          value={filters.searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10"
+          className="pl-12 pr-4 h-12 text-base rounded-xl bg-background border-border/50 focus:border-primary/50 transition-all"
         />
       </div>
 
-      {/* Filter Buttons */}
-      <div className="space-y-4">
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Category Filters */}
-        <div>
-          <h3 className="mb-3 text-sm font-medium text-foreground flex items-center">
-            <Filter className="mr-2 h-4 w-4" />
-            Categories
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm text-muted-foreground mr-2">Category:</span>
+          {categories.map((category) => {
+            const Icon = category.icon;
+            const isSelected = filters.category === category.name;
+            return (
               <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
+                key={category.name}
+                variant={isSelected ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setCategory(category.name)}
                 className={cn(
-                  "text-xs",
-                  selectedCategory === category && "bg-primary text-primary-foreground hover:bg-primary/90",
+                  "cursor-pointer transition-all",
+                  !isSelected && "hover:bg-primary/5 hover:border-primary/30"
                 )}
               >
-                {category}
+                <Icon className="mr-1.5 h-3.5 w-3.5" />
+                {category.name}
               </Button>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
         {/* Time Filters */}
-        <div>
-          <h3 className="mb-3 text-sm font-medium text-foreground">Time Period</h3>
-          <div className="flex flex-wrap gap-2">
-            {timeFilters.map((timeFilter) => (
+        <div className="flex items-center gap-2">
+          {timeFilters.map((timeFilter) => {
+            const isSelected = filters.timeFilter === timeFilter.name;
+            return (
               <Button
-                key={timeFilter}
-                variant={selectedTime === timeFilter ? "default" : "outline"}
+                key={timeFilter.name}
+                variant={isSelected ? "secondary" : "ghost"}
                 size="sm"
-                onClick={() => setSelectedTime(timeFilter)}
-                className={cn(
-                  "text-xs",
-                  selectedTime === timeFilter && "bg-primary text-primary-foreground hover:bg-primary/90",
-                )}
+                onClick={() => setTimeFilter(timeFilter.name)}
+                className="cursor-pointer"
               >
-                {timeFilter}
+                {timeFilter.name}
               </Button>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Active Filters & Clear */}
+      {/* Active Filters */}
       {hasActiveFilters && (
-        <div className="flex items-center gap-2 pt-2 border-t">
-          <span className="text-sm text-muted-foreground">Active filters:</span>
-          {selectedCategory !== "All" && (
-            <Badge variant="secondary" className="text-xs">
-              {selectedCategory}
+        <div className="flex flex-wrap items-center gap-2 bg-muted/30 rounded-lg p-3 border border-border/30">
+          <span className="text-sm text-muted-foreground">Filters:</span>
+
+          {filters.category !== "All" && (
+            <Badge variant="default" className="cursor-pointer">
+              {filters.category}
             </Badge>
           )}
-          {selectedTime !== "All Time" && (
-            <Badge variant="secondary" className="text-xs">
-              {selectedTime}
+
+          {filters.searchQuery && (
+            <Badge variant="outline" className="cursor-pointer">
+              &quot;{filters.searchQuery}&quot;
             </Badge>
           )}
-          {searchQuery && (
-            <Badge variant="secondary" className="text-xs">
-              "{searchQuery}"
-            </Badge>
-          )}
-          <Button variant="ghost" size="sm" onClick={clearFilters} className="ml-auto text-xs">
+
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={clearFilters}
+            className="ml-auto h-7 text-xs cursor-pointer"
+          >
             <X className="mr-1 h-3 w-3" />
-            Clear all
+            Clear
           </Button>
         </div>
       )}
     </div>
-  )
+  );
 }

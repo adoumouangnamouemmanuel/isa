@@ -1,63 +1,84 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Mail, Linkedin, Calendar, Users, Globe, GraduationCap } from "lucide-react"
-import Link from "next/link"
+"use client";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Globe, GraduationCap } from "lucide-react";
 
 interface Member {
-  id: number
-  name: string
-  country: string
-  flag: string
-  role: string
-  major: string
-  year: string
-  email: string
-  linkedin: string
-  bio: string
-  avatar: string
-  joinedDate: string
-  committees: string[]
-  languages: string[]
-  interests: string[]
+  id: number;
+  name: string;
+  country: string;
+  flag: string;
+  role: string;
+  major: string;
+  year: string;
+  email: string;
+  linkedin: string;
+  bio: string;
+  avatar: string;
+  joinedDate: string;
+  committees: string[];
+  languages: string[];
+  interests: string[];
 }
 
 interface MemberCardProps {
-  member: Member
+  member: Member;
+  onViewProfile: () => void;
 }
 
-export function MemberCard({ member }: MemberCardProps) {
-  const formatJoinDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-    })
-  }
+export function MemberCard({ member, onViewProfile }: MemberCardProps) {
+  // Convert country code to flag emoji
+  const getFlagEmoji = (countryCode: string) => {
+    if (!countryCode || countryCode.length !== 2) return "";
+    const codePoints = countryCode
+      .toUpperCase()
+      .split("")
+      .map((char) => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+  };
+
+  const getCountryDisplay = () => {
+    if (member.country.includes(" ")) {
+      return member.country;
+    }
+    const flagEmoji = getFlagEmoji(member.flag);
+    return flagEmoji ? `${flagEmoji} ${member.country}` : member.country;
+  };
 
   const getRoleBadgeVariant = (role: string) => {
     switch (role) {
       case "President":
       case "Vice President":
-        return "default"
+        return "default";
       case "Secretary":
       case "Treasurer":
-        return "secondary"
-      case "Committee Chair":
-        return "outline"
+        return "secondary";
       default:
-        return "outline"
+        return "outline";
     }
-  }
+  };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
-      <CardHeader className="text-center pb-4">
-        <div className="flex justify-center mb-4">
-          <Avatar className="h-20 w-20">
-            <AvatarImage src={member.avatar || "/placeholder.svg"} alt={member.name} />
-            <AvatarFallback className="text-lg">
+    <Card
+      className="group relative bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+      onClick={onViewProfile}
+    >
+      {/* Subtle Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Minimal Content */}
+      <div className="relative p-6 text-center space-y-4">
+        {/* Avatar */}
+        <div className="relative inline-block">
+          <Avatar className="h-24 w-24 mx-auto ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all duration-300">
+            <AvatarImage
+              src={member.avatar || "/placeholder.svg"}
+              alt={member.name}
+            />
+            <AvatarFallback className="text-xl font-bold bg-gradient-to-br from-primary to-secondary text-primary-foreground">
               {member.name
                 .split(" ")
                 .map((n) => n[0])
@@ -65,108 +86,61 @@ export function MemberCard({ member }: MemberCardProps) {
             </AvatarFallback>
           </Avatar>
         </div>
-        <div className="space-y-2">
-          <h3 className="text-lg font-semibold text-foreground text-balance">{member.name}</h3>
-          <div className="flex items-center justify-center text-sm text-muted-foreground">
-            <Globe className="mr-1 h-4 w-4" />
-            <span className="mr-1">{member.flag}</span>
-            {member.country}
-          </div>
-          <Badge variant={getRoleBadgeVariant(member.role)} className="text-xs">
-            {member.role}
-          </Badge>
-        </div>
-      </CardHeader>
 
-      <CardContent className="space-y-4">
-        {/* Academic Info */}
-        <div className="space-y-2">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <GraduationCap className="mr-2 h-4 w-4" />
+        {/* Name */}
+        <div>
+          <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+            {member.name}
+          </h3>
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <Badge
+              variant={getRoleBadgeVariant(member.role)}
+              className="text-xs"
+            >
+              {member.role}
+            </Badge>
+            <Badge
+              variant="outline"
+              className="text-xs border-primary/30 bg-primary/5"
+            >
+              Class of{" "}
+              {new Date().getFullYear() +
+                (member.year === "Freshman"
+                  ? 3
+                  : member.year === "Sophomore"
+                  ? 2
+                  : member.year === "Junior"
+                  ? 1
+                  : member.year === "Senior"
+                  ? 0
+                  : 0)}
+            </Badge>
+          </div>
+        </div>
+
+        {/* Country & Major */}
+        <div className="space-y-2 text-sm text-muted-foreground">
+          <div className="flex items-center justify-center gap-2">
+            <Globe className="h-4 w-4 text-primary" />
+            <span>{getCountryDisplay()}</span>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <GraduationCap className="h-4 w-4 text-secondary" />
             <span>{member.major}</span>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Users className="mr-2 h-4 w-4" />
-            <span>{member.year}</span>
-          </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="mr-2 h-4 w-4" />
-            <span>Joined {formatJoinDate(member.joinedDate)}</span>
-          </div>
         </div>
 
-        {/* Bio */}
-        <p className="text-sm text-muted-foreground text-pretty line-clamp-3">{member.bio}</p>
-
-        {/* Committees */}
-        {member.committees.length > 0 && (
-          <div>
-            <h4 className="text-xs font-medium text-foreground mb-2">Committees</h4>
-            <div className="flex flex-wrap gap-1">
-              {member.committees.slice(0, 2).map((committee, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
-                  {committee}
-                </Badge>
-              ))}
-              {member.committees.length > 2 && (
-                <Badge variant="outline" className="text-xs">
-                  +{member.committees.length - 2}
-                </Badge>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Languages */}
-        <div>
-          <h4 className="text-xs font-medium text-foreground mb-2">Languages</h4>
-          <div className="flex flex-wrap gap-1">
-            {member.languages.slice(0, 3).map((language, index) => (
-              <Badge key={index} variant="secondary" className="text-xs">
-                {language}
-              </Badge>
-            ))}
-            {member.languages.length > 3 && (
-              <Badge variant="secondary" className="text-xs">
-                +{member.languages.length - 3}
-              </Badge>
-            )}
-          </div>
-        </div>
-
-        {/* Interests */}
-        <div>
-          <h4 className="text-xs font-medium text-foreground mb-2">Interests</h4>
-          <div className="flex flex-wrap gap-1">
-            {member.interests.slice(0, 3).map((interest, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {interest}
-              </Badge>
-            ))}
-            {member.interests.length > 3 && (
-              <Badge variant="outline" className="text-xs">
-                +{member.interests.length - 3}
-              </Badge>
-            )}
-          </div>
-        </div>
-
-        {/* Contact Actions */}
-        <div className="flex gap-2 pt-2">
-          <Button asChild size="sm" variant="outline" className="flex-1 bg-transparent">
-            <Link href={`mailto:${member.email}`}>
-              <Mail className="mr-1 h-4 w-4" />
-              Email
-            </Link>
-          </Button>
-          <Button asChild size="sm" variant="outline" className="flex-1 bg-transparent">
-            <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className="mr-1 h-4 w-4" />
-              LinkedIn
-            </Link>
-          </Button>
-        </div>
-      </CardContent>
+        {/* View Profile Button */}
+        <Button
+          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold transition-all duration-300 cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            onViewProfile();
+          }}
+        >
+          View Profile
+        </Button>
+      </div>
     </Card>
-  )
+  );
 }

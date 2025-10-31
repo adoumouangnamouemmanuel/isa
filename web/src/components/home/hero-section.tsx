@@ -1,84 +1,136 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Users, Globe, Heart } from "lucide-react"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Globe, Play, TrendingUp, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const backgroundImages = [
+  "/hero/hero1.jpg",
+  "/hero/hero2.jpg",
+  "/hero/hero3.jpg",
+  "/hero/hero4.jpg",
+  "/hero/hero5.jpg",
+];
 
 export function HeroSection() {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20 py-20 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Hero Badge */}
-          <div className="mb-8 inline-flex items-center rounded-full border bg-card px-4 py-2 text-sm font-medium text-card-foreground shadow-sm">
-            <Globe className="mr-2 h-4 w-4 text-primary" />
-            Connecting Students Worldwide
-          </div>
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-          {/* Hero Title */}
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl text-balance">
-            Welcome to the{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Sliding Background Images */}
+      <div className="absolute inset-0 z-0">
+        {backgroundImages.map((image, index) => (
+          <div
+            key={image}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={image}
+              alt={`ISA Background ${index + 1}`}
+              fill
+              className="object-cover scale-105"
+              priority={index === 0}
+            />
+          </div>
+        ))}
+        {/* Simplified Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        <div className="mx-auto max-w-5xl text-center">
+
+          {/* Main Title */}
+          <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl text-white drop-shadow-lg leading-tight">
+            Ashesi University
+            <br />
+            <span className="bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
               International Students Association
             </span>
           </h1>
 
-          {/* Hero Description */}
-          <p className="mb-10 text-lg text-muted-foreground sm:text-xl lg:text-2xl text-pretty max-w-3xl mx-auto">
-            Building bridges across cultures, creating lasting friendships, and supporting international students
-            throughout their academic journey. Join our vibrant community today.
+          {/* Description */}
+          <p className="mb-10 text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            Join a vibrant community of students from over 30 countries.
+            Experience diverse cultures, build lasting friendships, and shape
+            the future together.
           </p>
 
-          {/* Hero Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="text-lg px-8 py-6">
-              <Link href="/join">
-                Join ISA Today
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
-              <Link href="/events">Explore Events</Link>
-            </Button>
+          {/* Stats Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto">
+            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-2 text-white">
+                <Users className="h-3.5 w-3.5 text-accent" />
+                <span className="text-xs sm:text-sm font-medium">
+                  500+ Members
+                </span>
+              </div>
+            </div>
+            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-2 text-white">
+                <Globe className="h-3.5 w-3.5 text-secondary" />
+                <span className="text-xs sm:text-sm font-medium">
+                  30+ Countries
+                </span>
+              </div>
+            </div>
+            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-2 text-white">
+                <TrendingUp className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs sm:text-sm font-medium">
+                  6+ Events/Year
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Hero Features */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Users className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Community</h3>
-              <p className="text-sm text-muted-foreground">
-                Connect with students from over 50 countries and build lifelong friendships.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Globe className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Cultural Exchange</h3>
-              <p className="text-sm text-muted-foreground">
-                Experience diverse cultures through events, festivals, and shared experiences.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Heart className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-foreground">Support</h3>
-              <p className="text-sm text-muted-foreground">
-                Get help with academics, visa issues, and adapting to life in a new country.
-              </p>
-            </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <Button
+              asChild
+              size="lg"
+              className="group bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/join" className="flex items-center">
+                Join ISA Today
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="glass-effect text-white border-white/40 hover:border-white/60 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+            >
+              <Link href="/events" className="flex items-center">
+                <Play className="mr-2 h-4 w-4" />
+                Explore Events
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Background Decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="h-[800px] w-[800px] rounded-full bg-gradient-to-r from-primary/5 to-secondary/5 blur-3xl" />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm bg-white/5">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
