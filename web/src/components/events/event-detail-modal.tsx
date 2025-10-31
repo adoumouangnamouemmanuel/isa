@@ -187,14 +187,22 @@ export function EventDetailModal({
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-4 border-t">
-            <Button asChild variant="default" className="flex-1 cursor-pointer">
-              <Link href={`/gallery?event=${encodeURIComponent(event.title)}`}>
-                <ImageIcon className="mr-2 h-4 w-4" />
-                View Event Photos
-              </Link>
-            </Button>
+            {!event.isUpcoming && (
+              <Button
+                asChild
+                variant="default"
+                className="flex-1 cursor-pointer"
+              >
+                <Link
+                  href={`/gallery?event=${encodeURIComponent(event.title)}`}
+                >
+                  <ImageIcon className="mr-2 h-4 w-4" />
+                  View Event Photos
+                </Link>
+              </Button>
+            )}
             {event.isUpcoming && (
-              <Button variant="outline" className="cursor-pointer">
+              <Button variant="outline" className="flex-1 cursor-pointer">
                 Share Event
               </Button>
             )}
