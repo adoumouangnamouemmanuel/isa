@@ -1,5 +1,7 @@
 "use client";
 
+import { signUp } from "@/app/actions/auth";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -11,13 +13,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { AlertCircle, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 export function MinimalistJoinForm() {
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -43,10 +47,24 @@ export function MinimalistJoinForm() {
     setFormData((prev) => ({ ...prev, [name]: checked }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsSuccess(true);
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const result = await signUp(formData);
+
+      if (result.error) {
+        setError(result.error);
+        setIsLoading(false);
+      } else {
+        setIsSuccess(true);
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.");
+      setIsLoading(false);
+    }
   };
 
   if (isSuccess) {
@@ -101,6 +119,13 @@ export function MinimalistJoinForm() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
         {/* Name */}
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-1.5">
@@ -369,9 +394,16 @@ export function MinimalistJoinForm() {
         <Button
           type="submit"
           className="w-full h-10 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-          disabled={!formData.agreeToTerms}
+          disabled={!formData.agreeToTerms || isLoading}
         >
-          Join ISA
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Creating Account...
+            </>
+          ) : (
+            "Join ISA"
+          )}
         </Button>
 
         {/* Login Link */}

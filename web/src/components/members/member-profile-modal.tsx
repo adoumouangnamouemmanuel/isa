@@ -250,17 +250,7 @@ export function MemberProfileModal({
                     Graduation
                   </p>
                   <p className="font-bold text-foreground text-sm">
-                    Class of{" "}
-                    {new Date().getFullYear() +
-                      (member.year === "Freshman"
-                        ? 3
-                        : member.year === "Sophomore"
-                        ? 2
-                        : member.year === "Junior"
-                        ? 1
-                        : member.year === "Senior"
-                        ? 0
-                        : 0)}
+                    Class of {member.year}
                   </p>
                 </div>
               </div>

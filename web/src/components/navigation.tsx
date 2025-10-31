@@ -1,8 +1,11 @@
 "use client";
 
+import { getUser } from "@/app/actions/auth";
+import { getProfileImageUrl } from "@/app/actions/storage";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { UserMenu } from "@/components/user-menu";
 import { cn } from "@/lib/utils";
 import {
   BookOpen,
@@ -34,6 +37,8 @@ const navigation = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -42,6 +47,17 @@ export function Navigation() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Fetch user and profile image on mount
+    getUser().then(async (fetchedUser) => {
+      setUser(fetchedUser);
+      if (fetchedUser) {
+        const imageUrl = await getProfileImageUrl(fetchedUser.id);
+        setProfileImageUrl(imageUrl);
+      }
+    });
   }, []);
 
   return (
@@ -113,16 +129,20 @@ export function Navigation() {
           {/* Enhanced Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
             <ThemeToggle />
-            <Button
-              asChild
-              className="relative bg-gradient-to-r from-primary via-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden"
-            >
-              <Link href="/join" className="flex items-center space-x-2">
-                <Sparkles className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
-                <span>Join ISA</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              </Link>
-            </Button>
+            {user ? (
+              <UserMenu user={user} profileImageUrl={profileImageUrl} />
+            ) : (
+              <Button
+                asChild
+                className="relative bg-gradient-to-r from-primary via-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden"
+              >
+                <Link href="/join" className="flex items-center space-x-2">
+                  <Sparkles className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
+                  <span>Join ISA</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Enhanced Mobile Navigation */}
@@ -202,22 +222,46 @@ export function Navigation() {
 
                   {/* Mobile Menu Footer */}
                   <div className="pt-6 border-t border-border/50 space-y-3">
-                    <Button
-                      asChild
-                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg h-12 text-base"
-                    >
-                      <Link
-                        href="/join"
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-center"
-                      >
-                        <Sparkles className="mr-2 h-5 w-5" />
-                        Join ISA Today
-                      </Link>
-                    </Button>
-                    <p className="text-xs text-center text-muted-foreground px-4">
-                      Join our community of 500+ international students
-                    </p>
+                    {user ? (
+                      <div className="space-y-2">
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="w-full h-12 text-base"
+                        >
+                          <Link
+                            href="/profile"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center justify-center"
+                          >
+                            <Users className="mr-2 h-5 w-5" />
+                            View Profile
+                          </Link>
+                        </Button>
+                        <p className="text-xs text-center text-muted-foreground px-4">
+                          Logged in as {user.email}
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        <Button
+                          asChild
+                          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg h-12 text-base"
+                        >
+                          <Link
+                            href="/join"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center justify-center"
+                          >
+                            <Sparkles className="mr-2 h-5 w-5" />
+                            Join ISA Today
+                          </Link>
+                        </Button>
+                        <p className="text-xs text-center text-muted-foreground px-4">
+                          Join our community of 500+ international students
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               </SheetContent>

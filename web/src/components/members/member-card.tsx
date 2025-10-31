@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Globe, GraduationCap } from "lucide-react";
 
 interface Member {
-  id: number;
+  id: number | string;
   name: string;
   country: string;
   flag: string;
@@ -26,10 +26,13 @@ interface Member {
 
 interface MemberCardProps {
   member: Member;
-  onViewProfile: () => void;
+  onViewProfile: (member: Member) => void;
 }
 
 export function MemberCard({ member, onViewProfile }: MemberCardProps) {
+  const handleClick = () => {
+    onViewProfile(member);
+  };
   // Convert country code to flag emoji
   const getFlagEmoji = (countryCode: string) => {
     if (!countryCode || countryCode.length !== 2) return "";
@@ -64,7 +67,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
   return (
     <Card
       className="group relative bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/50 shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-      onClick={onViewProfile}
+      onClick={handleClick}
     >
       {/* Subtle Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -103,17 +106,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
               variant="outline"
               className="text-xs border-primary/30 bg-primary/5"
             >
-              Class of{" "}
-              {new Date().getFullYear() +
-                (member.year === "Freshman"
-                  ? 3
-                  : member.year === "Sophomore"
-                  ? 2
-                  : member.year === "Junior"
-                  ? 1
-                  : member.year === "Senior"
-                  ? 0
-                  : 0)}
+              Class of {member.year}
             </Badge>
           </div>
         </div>
@@ -135,7 +128,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
           className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold transition-all duration-300 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            onViewProfile();
+            handleClick();
           }}
         >
           View Profile

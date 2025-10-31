@@ -1,17 +1,19 @@
 "use client";
 
+import { signIn } from "@/app/actions/auth";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { AlertCircle, ArrowLeft, LogIn } from "lucide-react";
+import { AlertCircle, ArrowLeft, Loader2, LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 export function MinimalistLoginForm() {
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,14 +26,24 @@ export function MinimalistLoginForm() {
     setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login submitted:", formData, "Remember me:", rememberMe);
+    setIsLoading(true);
+    setError("");
 
-    if (formData.email && formData.password) {
-      window.location.href = "/";
-    } else {
-      setError("Please enter your email and password");
+    try {
+      const result = await signIn(formData.email, formData.password);
+
+      if (result?.error) {
+        setError(result.error);
+        setIsLoading(false);
+      } else if (result?.success) {
+        // Successful login - redirect to home
+        window.location.href = "/";
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.");
+      setIsLoading(false);
     }
   };
 
@@ -136,9 +148,19 @@ export function MinimalistLoginForm() {
         <Button
           type="submit"
           className="w-full h-10 bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+          disabled={isLoading}
         >
-          <LogIn className="mr-2 h-4 w-4" />
-          Login
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Logging in...
+            </>
+          ) : (
+            <>
+              <LogIn className="mr-2 h-4 w-4" />
+              Login
+            </>
+          )}
         </Button>
 
         {/* Signup Link */}

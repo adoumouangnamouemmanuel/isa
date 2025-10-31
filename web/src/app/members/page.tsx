@@ -1,6 +1,7 @@
+import { getAllMembers } from "@/app/actions/members";
+import { DatabaseMembersList } from "@/components/members/database-members-list";
 import { MembersFilter } from "@/components/members/members-filter";
 import { MembersHeader } from "@/components/members/members-header";
-import { MembersList } from "@/components/members/members-list";
 import { MembersFilterProvider } from "@/contexts/members-filter-context";
 import type { Metadata } from "next";
 
@@ -25,7 +26,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MembersPage() {
+export default async function MembersPage() {
+  // Fetch members from database
+  const members = await getAllMembers();
+
+  // Log for debugging
+  console.log("Fetched members count:", members.length);
+  console.log("Sample member:", members[0]);
+
   return (
     <main className="relative min-h-screen bg-background overflow-hidden">
       {/* Animated Background Elements */}
@@ -55,7 +63,7 @@ export default function MembersPage() {
             </div>
 
             {/* Members List */}
-            <MembersList />
+            <DatabaseMembersList members={members} />
           </div>
         </MembersFilterProvider>
 
