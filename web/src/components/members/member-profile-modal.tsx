@@ -1,5 +1,6 @@
 "use client";
 
+import { type Member } from "@/app/actions/members";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,24 +26,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-
-interface Member {
-  id: number;
-  name: string;
-  country: string;
-  flag: string;
-  role: string;
-  major: string;
-  year: string;
-  email: string;
-  linkedin: string;
-  bio: string;
-  avatar: string;
-  joinedDate: string;
-  committees: string[];
-  languages: string[];
-  interests: string[];
-}
 
 interface MemberProfileModalProps {
   member: Member | null;

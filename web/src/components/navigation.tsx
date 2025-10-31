@@ -37,6 +37,7 @@ const navigation = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [user, setUser] = useState<any>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const pathname = usePathname();

@@ -1,28 +1,11 @@
 "use client";
 
+import { type Member } from "@/app/actions/members";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Globe, GraduationCap } from "lucide-react";
-
-interface Member {
-  id: number | string;
-  name: string;
-  country: string;
-  flag: string;
-  role: string;
-  major: string;
-  year: string;
-  email: string;
-  linkedin: string;
-  bio: string;
-  avatar: string;
-  joinedDate: string;
-  committees: string[];
-  languages: string[];
-  interests: string[];
-}
 
 interface MemberCardProps {
   member: Member;
