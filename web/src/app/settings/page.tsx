@@ -1,6 +1,13 @@
 import { getUser } from "@/app/actions/auth";
+import { EditAccountButton } from "@/components/settings/edit-account-button";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Bell, Lock, Palette, Shield, User } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -47,7 +54,7 @@ export default async function SettingsPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <Button variant="outline">Edit Account Details</Button>
+              <EditAccountButton userId={user.id} />
             </CardContent>
           </Card>
 
@@ -68,7 +75,9 @@ export default async function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <Button variant="outline">Change Password</Button>
-              <Button variant="outline" className="ml-3">Enable Two-Factor</Button>
+              <Button variant="outline" className="ml-3">
+                Enable Two-Factor
+              </Button>
             </CardContent>
           </Card>
 
@@ -109,7 +118,8 @@ export default async function SettingsPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground mb-3">
-                Theme preference is controlled by the toggle in the navigation bar
+                Theme preference is controlled by the toggle in the navigation
+                bar
               </p>
             </CardContent>
           </Card>
@@ -130,7 +140,10 @@ export default async function SettingsPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="text-destructive hover:text-destructive">
+              <Button
+                variant="outline"
+                className="text-destructive hover:text-destructive"
+              >
                 Delete Account
               </Button>
             </CardContent>
