@@ -59,6 +59,16 @@ export function EventDetailModal({
     });
   };
 
+  // Check if event is upcoming based on actual date
+  const isEventUpcoming = (eventDate: string) => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const event = new Date(eventDate);
+    event.setHours(0, 0, 0, 0);
+    return event >= now;
+  };
+
+  const isPastEvent = !isEventUpcoming(event.date);
   const attendancePercentage = (event.attendees / event.maxAttendees) * 100;
 
   return (
@@ -187,7 +197,7 @@ export function EventDetailModal({
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-4 border-t">
-            {!event.isUpcoming && (
+            {isPastEvent && (
               <Button
                 asChild
                 variant="default"
@@ -201,7 +211,7 @@ export function EventDetailModal({
                 </Link>
               </Button>
             )}
-            {event.isUpcoming && (
+            {!isPastEvent && (
               <Button variant="outline" className="flex-1 cursor-pointer">
                 Share Event
               </Button>
