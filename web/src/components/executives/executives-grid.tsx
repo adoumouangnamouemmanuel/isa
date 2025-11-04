@@ -32,7 +32,7 @@ const executives: Executive[] = [
     id: 2,
     name: "Suzie Youyou",
     position: "Vice-President",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/executives_pictures/suzie.jpg",
     country: "Cameroon",
     major: "Computer Science",
     classYear: "2027",
