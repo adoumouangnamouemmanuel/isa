@@ -117,28 +117,14 @@ export const events: Event[] = [
 
 // Helper functions to get filtered events
 export const getUpcomingEvents = () => {
-  const now = new Date();
-  now.setHours(0, 0, 0, 0); // Set to start of day for comparison
-
   return events
-    .filter((event) => {
-      const eventDate = new Date(event.date);
-      eventDate.setHours(0, 0, 0, 0);
-      return eventDate >= now;
-    })
+    .filter((event) => event.isUpcoming)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
 export const getPastEvents = () => {
-  const now = new Date();
-  now.setHours(0, 0, 0, 0); // Set to start of day for comparison
-
   return events
-    .filter((event) => {
-      const eventDate = new Date(event.date);
-      eventDate.setHours(0, 0, 0, 0);
-      return eventDate < now;
-    })
+    .filter((event) => !event.isUpcoming)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
 
