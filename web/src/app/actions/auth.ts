@@ -62,7 +62,7 @@ export async function signUp(formData: {
       console.error("Profile upsert error:", profileError);
       // Note: User is still created in auth, but profile creation/update failed
     } else {
-      console.log("Profile upserted successfully:", upsertedData);
+      // console.log("Profile upserted successfully:", upsertedData);
     }
   }
 

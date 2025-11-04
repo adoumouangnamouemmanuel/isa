@@ -30,9 +30,9 @@ export default async function MembersPage() {
   // Fetch members from database
   const members = await getAllMembers();
 
-  // Log for debugging
-  console.log("Fetched members count:", members.length);
-  console.log("Sample member:", members[0]);
+  // // Log for debugging
+  // console.log("Fetched members count:", members.length);
+  // console.log("Sample member:", members[0]);
 
   return (
     <main className="relative min-h-screen bg-background overflow-hidden">

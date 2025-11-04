@@ -12,6 +12,7 @@ export interface Event {
   isUpcoming: boolean;
   organizer: string;
   tags: string[];
+  photos?: string[]; // Array of photo URLs for gallery
 }
 
 export const events: Event[] = [
@@ -31,6 +32,17 @@ export const events: Event[] = [
     isUpcoming: true,
     organizer: "ISA Sports Committee",
     tags: ["Futsal", "Tournament", "Sports", "Competition"],
+    photos: ["/images/futsal_edition_4/f1.jpg",
+    "/images/futsal_edition_4/f2.jpg",
+    "/images/futsal_edition_4/f3.jpg",
+    "/images/futsal_edition_4/f4.jpg",
+    "/images/futsal_edition_4/f5.jpg",
+    "/images/futsal_edition_4/f6.jpg",
+    "/images/futsal_edition_4/f7.jpg",
+    "/images/futsal_edition_4/f8.jpg",
+    "/images/futsal_edition_4/f9.jpg",
+    // "/images/futsal_edition_4/f10.jpg",
+    ],
   },
   {
     id: 2,
@@ -64,6 +76,22 @@ export const events: Event[] = [
     isUpcoming: false,
     organizer: "ISA Cultural Committee",
     tags: ["Cultural", "Trip", "History", "Art", "Ghana"],
+    photos: [
+      "/images/kwame_museum/KNM3.jpg",
+      // "/images/kwame_museum/KNM1.jpg",
+      // "/images/kwame_museum/KNM2.jpg",
+      "/images/kwame_museum/KNM4.jpg",
+      "/images/kwame_museum/KNM5.jpg",
+      "/images/kwame_museum/KNM6.jpg",
+      "/images/kwame_museum/KNM7.jpg",
+      "/images/kwame_museum/KNM8.jpg",
+      "/images/kwame_museum/KNM9.jpg",
+      "/images/kwame_museum/KNM10.jpg",
+      "/images/kwame_museum/KNM11.jpg",
+      "/images/kwame_museum/KNM12.jpg",
+      "/images/kwame_museum/KNM13.jpg",
+      "/images/kwame_museum/KNM14.jpg",
+    ],
   },
   {
     id: 4,
@@ -80,6 +108,17 @@ export const events: Event[] = [
     isUpcoming: false,
     organizer: "ISA Sports Committee",
     tags: ["Tournament", "Sports", "Basketball", "Competition"],
+    photos: [
+      "/images/futsal_edition_3/f1.jpg",
+      "/images/futsal_edition_3/f2.jpg",
+      "/images/futsal_edition_3/f3.jpg",
+      "/images/futsal_edition_3/f4.jpg",
+      "/images/futsal_edition_3/f5.jpg",
+      "/images/futsal_edition_3/f6.jpg",
+      "/images/futsal_edition_3/f7.jpg",
+      "/images/futsal_edition_3/f8.jpg",
+      "/images/futsal_edition_3/f9.jpg",
+    ],
   },
   {
     id: 5,
@@ -96,6 +135,23 @@ export const events: Event[] = [
     isUpcoming: false,
     organizer: "ISA Social Committee",
     tags: ["Party", "Social", "Music", "Community"],
+    photos: [
+      "/images/get_together_party/g1.jpg",
+      "/images/get_together_party/g2.jpg",
+      "/images/get_together_party/g3.jpg",
+      "/images/get_together_party/g4.jpg",
+      "/images/get_together_party/g5.jpg",
+      "/images/get_together_party/g6.jpg",
+      "/images/get_together_party/g7.jpg",
+      "/images/get_together_party/g8.jpg",
+      "/images/get_together_party/g9.jpg",
+      "/images/get_together_party/g10.jpg",
+      "/images/get_together_party/g11.jpg",
+      "/images/get_together_party/g12.jpg",
+      "/images/get_together_party/g13.jpg",
+      "/images/get_together_party/g14.jpg",
+      // "/images/get_together_party/g15.jpg",
+    ],
   },
   {
     id: 6,
@@ -112,6 +168,13 @@ export const events: Event[] = [
     isUpcoming: false,
     organizer: "ISA Cultural Committee",
     tags: ["Coffee", "Culture", "Networking", "Food"],
+    photos: [
+      "/international-food-festival.jpg",
+      "/coffee-hour.jpg",
+      "/international-food-festival.jpg",
+      "/hero/hero3.jpg",
+      "/coffee-hour.jpg",
+    ],
   },
 ];
 

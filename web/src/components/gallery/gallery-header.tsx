@@ -5,11 +5,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const backgroundImages = [
-  "/international-food-festival.jpg",
-  "/chinese-new-year.jpg",
-  "/holi-celebration.jpg",
-  "/soccer-tournament.jpg",
-  "/career-networking-workshop.jpg",
+  "/hero/hero1.jpg",
+  "/hero/hero2.jpg",
+  "/hero/hero3.jpg",
+  "/hero/hero4.jpg",
+  "/hero/hero5.jpg",
 ];
 
 export function GalleryHeader() {

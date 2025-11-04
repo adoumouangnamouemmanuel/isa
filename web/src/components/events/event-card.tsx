@@ -9,9 +9,14 @@ import Image from "next/image";
 interface EventCardProps {
   event: Event;
   onViewDetails?: (event: Event) => void;
+  isPastEvent?: boolean;
 }
 
-export function EventCard({ event, onViewDetails }: EventCardProps) {
+export function EventCard({
+  event,
+  onViewDetails,
+  isPastEvent = false,
+}: EventCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return {
@@ -28,7 +33,7 @@ export function EventCard({ event, onViewDetails }: EventCardProps) {
     <Card
       className={cn(
         "group overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30",
-        !event.isUpcoming && "opacity-75"
+        isPastEvent && "opacity-75"
       )}
     >
       <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5">
@@ -51,7 +56,7 @@ export function EventCard({ event, onViewDetails }: EventCardProps) {
 
         <div className="absolute top-3 right-3">
           <Badge
-            variant={event.isUpcoming ? "default" : "secondary"}
+            variant={isPastEvent ? "secondary" : "default"}
             className="text-xs"
           >
             {event.category}
@@ -97,7 +102,7 @@ export function EventCard({ event, onViewDetails }: EventCardProps) {
         </div>
 
         <Button
-          variant={event.isUpcoming ? "default" : "outline"}
+          variant={isPastEvent ? "outline" : "default"}
           className="w-full cursor-pointer"
           onClick={() => onViewDetails?.(event)}
         >

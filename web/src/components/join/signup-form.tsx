@@ -64,7 +64,7 @@ export function SignupForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Authentication will be implemented later
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     setIsSubmitted(true);
   };
 

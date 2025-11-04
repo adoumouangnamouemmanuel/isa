@@ -92,7 +92,7 @@ export function ContactForm() {
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    console.log("[v0] Contact form submitted:", formData);
+    // console.log("[v0] Contact form submitted:", formData);
 
     setIsSubmitting(false);
     setIsSubmitted(true);

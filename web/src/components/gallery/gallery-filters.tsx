@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { getPastEvents, type Event } from "@/data/events";
 import { Calendar, Search, Tag, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import {
@@ -47,157 +48,40 @@ export function useGalleryFilters() {
   return context;
 }
 
-// Gallery data - based on actual past events
-export const galleryImages: GalleryImage[] = [
-  // Visit to Kwame Nkrumah Park and Art Center - October 2025
-  {
-    id: 1,
-    src: "/international-food-festival.jpg",
-    title: "Group photo at Kwame Nkrumah Memorial",
-    event: "Visit to Kwame Nkrumah Park and Art Center",
-    year: 2025,
-    date: "2025-10-26",
-    category: "Cultural",
-  },
-  {
-    id: 2,
-    src: "/chinese-new-year.jpg",
-    title: "Exploring the art center",
-    event: "Visit to Kwame Nkrumah Park and Art Center",
-    year: 2025,
-    date: "2025-10-26",
-    category: "Cultural",
-  },
-  {
-    id: 3,
-    src: "/holi-celebration.jpg",
-    title: "Learning about Pan-Africanism",
-    event: "Visit to Kwame Nkrumah Park and Art Center",
-    year: 2025,
-    date: "2025-10-26",
-    category: "Cultural",
-  },
-  // Get Together Party 1st Edition - April 2025
-  {
-    id: 4,
-    src: "/coffee-hour.jpg",
-    title: "Dancing and music at The Hive",
-    event: "Get Together Party 1st Edition",
-    year: 2025,
-    date: "2025-04-24",
-    category: "Social",
-  },
-  {
-    id: 5,
-    src: "/international-food-festival.jpg",
-    title: "Students enjoying the party",
-    event: "Get Together Party 1st Edition",
-    year: 2025,
-    date: "2025-04-24",
-    category: "Social",
-  },
-  {
-    id: 6,
-    src: "/chinese-new-year.jpg",
-    title: "Group photo at the party",
-    event: "Get Together Party 1st Edition",
-    year: 2025,
-    date: "2025-04-24",
-    category: "Social",
-  },
-  {
-    id: 7,
-    src: "/holi-celebration.jpg",
-    title: "Fun moments with friends",
-    event: "Get Together Party 1st Edition",
-    year: 2025,
-    date: "2025-04-24",
-    category: "Social",
-  },
-  // International Students Tournament 3rd Edition - March 2025
-  {
-    id: 8,
-    src: "/soccer-tournament.jpg",
-    title: "Tournament opening ceremony",
-    event: "International Students Tournament 3rd Edition",
-    year: 2025,
-    date: "2025-03-08",
-    category: "Sports",
-  },
-  {
-    id: 9,
-    src: "/soccer-tournament.jpg",
-    title: "Teams competing on the court",
-    event: "International Students Tournament 3rd Edition",
-    year: 2025,
-    date: "2025-03-08",
-    category: "Sports",
-  },
-  {
-    id: 10,
-    src: "/soccer-tournament.jpg",
-    title: "Winning team celebration",
-    event: "International Students Tournament 3rd Edition",
-    year: 2025,
-    date: "2025-03-08",
-    category: "Sports",
-  },
-  {
-    id: 11,
-    src: "/soccer-tournament.jpg",
-    title: "All participants group photo",
-    event: "International Students Tournament 3rd Edition",
-    year: 2025,
-    date: "2025-03-08",
-    category: "Sports",
-  },
-  {
-    id: 12,
-    src: "/soccer-tournament.jpg",
-    title: "Trophy presentation",
-    event: "International Students Tournament 3rd Edition",
-    year: 2025,
-    date: "2025-03-08",
-    category: "Sports",
-  },
-  // Global Cafe - March 2025
-  {
-    id: 13,
-    src: "/international-food-festival.jpg",
-    title: "Coffee and snacks setup",
-    event: "Global Cafe",
-    year: 2025,
-    date: "2025-03-04",
-    category: "Cultural",
-  },
-  {
-    id: 14,
-    src: "/coffee-hour.jpg",
-    title: "Students sharing stories",
-    event: "Global Cafe",
-    year: 2025,
-    date: "2025-03-04",
-    category: "Cultural",
-  },
-  {
-    id: 15,
-    src: "/international-food-festival.jpg",
-    title: "Cultural exchange moment",
-    event: "Global Cafe",
-    year: 2025,
-    date: "2025-03-04",
-    category: "Cultural",
-  },
-  {
-    id: 16,
-    src: "/coffee-hour.jpg",
-    title: "Engineering Courtyard gathering",
-    event: "Global Cafe",
-    year: 2025,
-    date: "2025-03-04",
-    category: "Cultural",
-  },
-];
+// Generate gallery images automatically from past events
+const generateGalleryImages = (): GalleryImage[] => {
+  const pastEvents = getPastEvents();
+  const images: GalleryImage[] = [];
+  let imageId = 1;
+
+  pastEvents.forEach((event: Event) => {
+    const eventYear = new Date(event.date).getFullYear();
+
+    // Use the photos array from the event if available, otherwise use the main image
+    const eventPhotos =
+      event.photos && event.photos.length > 0 ? event.photos : [event.image];
+
+    eventPhotos.forEach((photoSrc, index) => {
+      images.push({
+        id: imageId++,
+        src: photoSrc,
+        title:
+          eventPhotos.length === 1
+            ? event.title
+            : `${event.title} - Photo ${index + 1}`,
+        event: event.title,
+        year: eventYear,
+        date: event.date,
+        category: event.category,
+      });
+    });
+  });
+
+  return images;
+};
+
+// Gallery data - automatically generated from past events
+export const galleryImages: GalleryImage[] = generateGalleryImages();
 
 export function GalleryFilterProvider({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
@@ -248,6 +132,7 @@ export function GalleryFilterProvider({ children }: { children: ReactNode }) {
 
 export function GalleryFilters() {
   const {
+    images,
     selectedYear,
     selectedCategory,
     searchQuery,
@@ -257,7 +142,12 @@ export function GalleryFilters() {
     filteredImages,
   } = useGalleryFilters();
 
-  const years = ["All Years", "2025", "2024", "2023"];
+  // Extract unique years from gallery images dynamically
+  const uniqueYears = Array.from(new Set(images.map((img) => img.year))).sort(
+    (a, b) => b - a
+  );
+  const years = ["All Years", ...uniqueYears.map(String)];
+
   const categories = [
     "All Events",
     "Cultural",

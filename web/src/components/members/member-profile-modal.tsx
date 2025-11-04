@@ -414,13 +414,13 @@ export function MemberProfileModal({
                 pointerEvents: "auto",
               }}
               onClick={(e) => {
-                console.log("X button clicked!");
+                // console.log("X button clicked!");
                 e.stopPropagation();
                 e.preventDefault();
                 setViewingImage(false);
               }}
               onPointerDown={(e) => {
-                console.log("X button pointer down!");
+                // console.log("X button pointer down!");
                 e.stopPropagation();
                 setViewingImage(false);
               }}

@@ -26,7 +26,7 @@ export function LoginForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Authentication will be implemented later
-    console.log("Login submitted:", formData, "Remember me:", rememberMe);
+    // console.log("Login submitted:", formData, "Remember me:", rememberMe);
 
     // Simulate login (remove this when implementing real auth)
     if (formData.email && formData.password) {

@@ -19,6 +19,15 @@ export function EventsList() {
     setIsModalOpen(true);
   };
 
+  // Helper function to check if event is upcoming
+  const isEventUpcoming = (eventDate: string) => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const event = new Date(eventDate);
+    event.setHours(0, 0, 0, 0);
+    return event >= now;
+  };
+
   // Filter events based on filters
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
@@ -48,11 +57,12 @@ export function EventsList() {
         }
       }
 
-      // Time filter
-      if (filters.timeFilter === "Upcoming" && !event.isUpcoming) {
+      // Time filter - use dynamic date checking
+      const isUpcoming = isEventUpcoming(event.date);
+      if (filters.timeFilter === "Upcoming" && !isUpcoming) {
         return false;
       }
-      if (filters.timeFilter === "Past Events" && event.isUpcoming) {
+      if (filters.timeFilter === "Past Events" && isUpcoming) {
         return false;
       }
       if (filters.timeFilter === "This Month") {
@@ -70,8 +80,12 @@ export function EventsList() {
     });
   }, [filters]);
 
-  const upcomingEvents = filteredEvents.filter((event) => event.isUpcoming);
-  const pastEvents = filteredEvents.filter((event) => !event.isUpcoming);
+  const upcomingEvents = filteredEvents.filter((event) =>
+    isEventUpcoming(event.date)
+  );
+  const pastEvents = filteredEvents.filter(
+    (event) => !isEventUpcoming(event.date)
+  );
 
   return (
     <div className="space-y-12">
@@ -94,7 +108,11 @@ export function EventsList() {
                 style={{ animationDelay: `${index * 100}ms` }}
                 className="animate-fade-in-up"
               >
-                <EventCard event={event} onViewDetails={handleViewEvent} />
+                <EventCard
+                  event={event}
+                  onViewDetails={handleViewEvent}
+                  isPastEvent={false}
+                />
               </div>
             ))}
           </div>
@@ -117,7 +135,11 @@ export function EventsList() {
                 style={{ animationDelay: `${index * 100}ms` }}
                 className="animate-fade-in-up"
               >
-                <EventCard event={event} onViewDetails={handleViewEvent} />
+                <EventCard
+                  event={event}
+                  onViewDetails={handleViewEvent}
+                  isPastEvent={true}
+                />
               </div>
             ))}
           </div>

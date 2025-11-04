@@ -5,10 +5,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const backgroundImages = [
-  "/members/m5.jpg",
-  "/executives_pictures/Adelard.jpg",
-  "/executives_pictures/bachira.jpg",
-  "/executives_pictures/raicha.jpg",
+  "/contact/contact1.jpg",
+  "/contact/contact2.jpg",
+  "/contact/contact3.jpg",
+  "/contact/contact4.jpg",
+  "/contact/contact5.jpg ",
 ];
 
 export function ExecutivesHeader() {
