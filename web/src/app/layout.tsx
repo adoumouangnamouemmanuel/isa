@@ -91,12 +91,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icons/logo.png" },
-    ],
-    apple: [
-      { url: "/icons/logo.png" },
-    ],
+    icon: [{ url: "/icons/logo.png?v=2", type: "image/png" }],
+    apple: [{ url: "/icons/logo.png?v=2", type: "image/png" }],
+    shortcut: ["/icons/logo.png?v=2"],
   },
   manifest: "/site.webmanifest",
 };
@@ -109,6 +106,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
+        <link rel="icon" type="image/png" href="/icons/logo.png?v=2" />
+        <link rel="shortcut icon" type="image/png" href="/icons/logo.png?v=2" />
+        <link rel="apple-touch-icon" href="/icons/logo.png?v=2" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -2,7 +2,6 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   Calendar,
   ChevronLeft,
@@ -67,7 +66,7 @@ export function ImageViewer({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, currentIndex, zoomLevel]);
 
   if (!image) return null;
@@ -130,145 +129,145 @@ export function ImageViewer({
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 gap-0 bg-black/95 backdrop-blur-xl border-none">
-        {/* Header */}
-        <div className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent p-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-bold text-white mb-2 truncate">
-                {currentImage.title}
-              </h2>
-              <div className="flex flex-wrap items-center gap-2">
-                <Badge
-                  className={`${getCategoryColor(
-                    currentImage.category
-                  )} text-white border-none`}
-                >
-                  <Tag className="h-3 w-3 mr-1" />
-                  {currentImage.category}
-                </Badge>
-                <Badge variant="outline" className="text-white border-white/30">
-                  <Calendar className="h-3 w-3 mr-1" />
-                  {new Date(currentImage.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </Badge>
-                <span className="text-sm text-white/70">
-                  {currentImage.event}
-                </span>
-              </div>
+    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl">
+      {/* Header */}
+      <div className="absolute top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent p-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-xl font-bold text-white mb-2 truncate">
+              {currentImage.title}
+            </h2>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge
+                className={`${getCategoryColor(
+                  currentImage.category
+                )} text-white border-none`}
+              >
+                <Tag className="h-3 w-3 mr-1" />
+                {currentImage.category}
+              </Badge>
+              <Badge variant="outline" className="text-white border-white/30">
+                <Calendar className="h-3 w-3 mr-1" />
+                {new Date(currentImage.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </Badge>
+              <span className="text-sm text-white/70">
+                {currentImage.event}
+              </span>
             </div>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="text-white hover:bg-white/20 shrink-0"
-            >
-              <X className="h-6 w-6" />
-            </Button>
           </div>
-        </div>
 
-        {/* Image Container */}
-        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-          <div
-            className="relative transition-transform duration-300 ease-out"
-            style={{ transform: `scale(${zoomLevel})` }}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="text-white hover:bg-white/20 shrink-0"
           >
-            <Image
-              src={currentImage.src}
-              alt={currentImage.title}
-              width={1920}
-              height={1080}
-              className="max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain"
-              priority
-            />
+            <X className="h-6 w-6" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Image Container */}
+      <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+        <div
+          className="relative transition-transform duration-300 ease-out"
+          style={{ transform: `scale(${zoomLevel})` }}
+        >
+          <Image
+            src={currentImage.src}
+            alt={currentImage.title}
+            width={1920}
+            height={1080}
+            className="max-w-full max-h-full w-auto h-auto object-contain"
+            priority
+          />
+        </div>
+
+        {/* Navigation Arrows */}
+        {hasPrevious && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={goToPrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+          >
+            <ChevronLeft className="h-8 w-8" />
+          </Button>
+        )}
+
+        {hasNext && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+          >
+            <ChevronRight className="h-8 w-8" />
+          </Button>
+        )}
+      </div>
+
+      {/* Footer Controls */}
+      <div className="absolute bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-black/80 to-transparent p-4">
+        <div className="flex items-center justify-between gap-4">
+          {/* Counter */}
+          <div className="text-sm text-white/90">
+            {currentIndex + 1} / {allImages.length}
           </div>
 
-          {/* Navigation Arrows */}
-          {hasPrevious && (
+          {/* Zoom Controls */}
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
-              onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+              onClick={zoomOut}
+              disabled={zoomLevel <= 0.5}
+              className="h-10 w-10 text-white hover:bg-white/20 disabled:opacity-50"
             >
-              <ChevronLeft className="h-8 w-8" />
+              <ZoomOut className="h-5 w-5" />
             </Button>
-          )}
-
-          {hasNext && (
+            <button
+              onClick={resetZoom}
+              className="text-sm text-white/90 hover:text-white px-2 min-w-[60px]"
+            >
+              {Math.round(zoomLevel * 100)}%
+            </button>
             <Button
               variant="ghost"
               size="icon"
-              onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+              onClick={zoomIn}
+              disabled={zoomLevel >= 3}
+              className="h-10 w-10 text-white hover:bg-white/20 disabled:opacity-50"
             >
-              <ChevronRight className="h-8 w-8" />
-            </Button>
-          )}
-        </div>
-
-        {/* Footer Controls */}
-        <div className="absolute bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-black/80 to-transparent p-4">
-          <div className="flex items-center justify-between gap-4">
-            {/* Counter */}
-            <div className="text-sm text-white/90">
-              {currentIndex + 1} / {allImages.length}
-            </div>
-
-            {/* Zoom Controls */}
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={zoomOut}
-                disabled={zoomLevel <= 0.5}
-                className="h-10 w-10 text-white hover:bg-white/20 disabled:opacity-50"
-              >
-                <ZoomOut className="h-5 w-5" />
-              </Button>
-              <button
-                onClick={resetZoom}
-                className="text-sm text-white/90 hover:text-white px-2 min-w-[60px]"
-              >
-                {Math.round(zoomLevel * 100)}%
-              </button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={zoomIn}
-                disabled={zoomLevel >= 3}
-                className="h-10 w-10 text-white hover:bg-white/20 disabled:opacity-50"
-              >
-                <ZoomIn className="h-5 w-5" />
-              </Button>
-            </div>
-
-            {/* Download Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={downloadImage}
-              className="h-10 w-10 text-white hover:bg-white/20"
-            >
-              <Download className="h-5 w-5" />
+              <ZoomIn className="h-5 w-5" />
             </Button>
           </div>
-        </div>
 
-        {/* Keyboard Shortcuts Hint */}
-        <div className="absolute top-20 right-4 text-xs text-white/50 space-y-1 hidden md:block">
-          <p>← → Navigate</p>
-          <p>+ − Zoom</p>
-          <p>ESC Close</p>
+          {/* Download Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={downloadImage}
+            className="h-10 w-10 text-white hover:bg-white/20"
+          >
+            <Download className="h-5 w-5" />
+          </Button>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+
+      {/* Keyboard Shortcuts Hint */}
+      <div className="absolute top-20 right-4 text-xs text-white/50 space-y-1 hidden md:block">
+        <p>← → Navigate</p>
+        <p>+ − Zoom</p>
+        <p>ESC Close</p>
+      </div>
+    </div>
   );
 }
