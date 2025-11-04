@@ -78,7 +78,7 @@ export const events: Event[] = [
     tags: ["Cultural", "Trip", "History", "Art", "Ghana"],
     photos: [
       "/images/kwame_museum/KNM3.jpg",
-      // "/images/kwame_museum/KNM1.jpg",
+      "/images/kwame_museum/KNM1.jpg",
       // "/images/kwame_museum/KNM2.jpg",
       "/images/kwame_museum/KNM4.jpg",
       "/images/kwame_museum/KNM5.jpg",

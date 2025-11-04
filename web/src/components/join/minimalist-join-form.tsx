@@ -75,16 +75,58 @@ export function MinimalistJoinForm() {
             <CheckCircle2 className="h-16 w-16 text-primary" />
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-3">
           <h2 className="text-2xl font-bold">Welcome to ISA! 🎉</h2>
-          <p className="text-muted-foreground">
-            Your account has been created successfully. Check your email for
-            confirmation.
+          <p className="text-muted-foreground leading-relaxed">
+            Your account has been created successfully!
           </p>
+          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 text-sm">
+            <p className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              📧 Check Your Email
+            </p>
+            <p className="text-blue-700 dark:text-blue-300 mb-3">
+              We&apos;ve sent a verification link to{" "}
+              <span className="font-medium">{formData.email}</span>. Please
+              click the link to activate your account.
+            </p>
+            <p className="text-xs text-blue-600 dark:text-blue-400">
+              Didn&apos;t receive the email? Check your spam folder or click
+              below to resend.
+            </p>
+          </div>
         </div>
-        <Button asChild className="w-full">
-          <Link href="/">Return to Home</Link>
-        </Button>
+        <div className="space-y-2">
+          <Button asChild className="w-full">
+            <Link href="/">Return to Home</Link>
+          </Button>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={async () => {
+              setIsLoading(true);
+              const { resendVerificationEmail } = await import(
+                "@/app/actions/auth"
+              );
+              const result = await resendVerificationEmail(formData.email);
+              if (result.success) {
+                alert("Verification email sent! Check your inbox.");
+              } else {
+                alert(result.error || "Failed to resend email");
+              }
+              setIsLoading(false);
+            }}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              "Resend Verification Email"
+            )}
+          </Button>
+        </div>
       </div>
     );
   }

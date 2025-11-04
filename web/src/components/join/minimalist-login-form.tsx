@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn } from "@/app/actions/auth";
+import { ForgotPasswordDialog } from "@/components/auth/forgot-password-dialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -38,8 +39,14 @@ export function MinimalistLoginForm() {
         setError(result.error);
         setIsLoading(false);
       } else if (result?.success) {
-        // Successful login - redirect to home
-        window.location.href = "/";
+        // Successful login - redirect based on first login status
+        if (result.isFirstLogin) {
+          // First time login - redirect to profile page with edit mode
+          window.location.href = "/profile?edit=true";
+        } else {
+          // Regular login - redirect to home
+          window.location.href = "/";
+        }
       }
     } catch {
       setError("An unexpected error occurred. Please try again.");
@@ -108,13 +115,7 @@ export function MinimalistLoginForm() {
             <Label htmlFor="password" className="text-sm">
               Password
             </Label>
-            <button
-              type="button"
-              className="text-xs text-primary hover:underline"
-              onClick={() => alert("Password reset will be implemented")}
-            >
-              Forgot?
-            </button>
+            <ForgotPasswordDialog />
           </div>
           <Input
             id="password"

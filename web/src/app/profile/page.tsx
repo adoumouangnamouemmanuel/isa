@@ -2,6 +2,7 @@ import { getUser } from "@/app/actions/auth";
 import { getProfile } from "@/app/actions/profile";
 import { getProfileImageUrl } from "@/app/actions/storage";
 import { ProfileImageUpload } from "@/components/profile-image-upload";
+import { ProfilePageClient } from "@/components/profile/profile-page-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -61,6 +62,9 @@ export default async function ProfilePage() {
             View and manage your ISA membership information
           </p>
         </div>
+
+        {/* First Login Banner and Edit Dialog Handler */}
+        <ProfilePageClient userId={user.id} />
 
         <div className="grid gap-6 md:grid-cols-3">
           {/* Profile Card */}

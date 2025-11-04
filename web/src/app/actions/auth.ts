@@ -73,7 +73,7 @@ export async function signUp(formData: {
 export async function signIn(email: string, password: string) {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -82,8 +82,28 @@ export async function signIn(email: string, password: string) {
     return { error: error.message };
   }
 
+  // Check if this is the user's first login by checking if profile is incomplete
+  if (data.user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("bio, linkedin, committees, languages, interests")
+      .eq("id", data.user.id)
+      .single();
+
+    const isFirstLogin =
+      !profile ||
+      (!profile.bio &&
+        !profile.linkedin &&
+        (!profile.committees || profile.committees.length === 0) &&
+        (!profile.languages || profile.languages.length === 0) &&
+        (!profile.interests || profile.interests.length === 0));
+
+    revalidatePath("/", "layout");
+    return { success: true, isFirstLogin };
+  }
+
   revalidatePath("/", "layout");
-  return { success: true };
+  return { success: true, isFirstLogin: false };
 }
 
 export async function signOut() {
@@ -99,4 +119,72 @@ export async function getUser() {
     data: { user },
   } = await supabase.auth.getUser();
   return user;
+}
+
+export async function changePassword(
+  currentPassword: string,
+  newPassword: string
+) {
+  const supabase = await createClient();
+
+  // First verify the current password by attempting to sign in
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user?.email) {
+    return { error: "No user found" };
+  }
+
+  // Verify current password
+  const { error: verifyError } = await supabase.auth.signInWithPassword({
+    email: user.email,
+    password: currentPassword,
+  });
+
+  if (verifyError) {
+    return { error: "Current password is incorrect" };
+  }
+
+  // Update to new password
+  const { error: updateError } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  if (updateError) {
+    return { error: updateError.message };
+  }
+
+  return { success: true };
+}
+
+export async function resendVerificationEmail(email: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email,
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  return { success: true, message: "Verification email sent successfully" };
+}
+
+export async function resetPassword(email: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${
+      process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+    }/auth/reset-password`,
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  return { success: true, message: "Password reset email sent successfully" };
 }

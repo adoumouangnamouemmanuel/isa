@@ -1,4 +1,5 @@
 import { getUser } from "@/app/actions/auth";
+import { ChangePasswordDialog } from "@/components/settings/change-password-dialog";
 import { EditAccountButton } from "@/components/settings/edit-account-button";
 import { Button } from "@/components/ui/button";
 import {
@@ -68,16 +69,13 @@ export default async function SettingsPage() {
                 <div>
                   <CardTitle>Security</CardTitle>
                   <CardDescription>
-                    Manage your password and security preferences
+                    Manage your password and keep your account secure
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <Button variant="outline">Change Password</Button>
-              <Button variant="outline" className="ml-3">
-                Enable Two-Factor
-              </Button>
+            <CardContent>
+              <ChangePasswordDialog />
             </CardContent>
           </Card>
 
