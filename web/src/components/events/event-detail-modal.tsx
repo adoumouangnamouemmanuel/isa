@@ -13,12 +13,15 @@ import {
   Clock,
   Image as ImageIcon,
   MapPin,
+  Share2,
   Tag,
   User,
   Users,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface Event {
   id: number;
@@ -47,6 +50,8 @@ export function EventDetailModal({
   open,
   onOpenChange,
 }: EventDetailModalProps) {
+  const [isSharing, setIsSharing] = useState(false);
+
   if (!event) return null;
 
   const formatDate = (dateString: string) => {
@@ -70,6 +75,48 @@ export function EventDetailModal({
 
   const isPastEvent = !isEventUpcoming(event.date);
   const attendancePercentage = (event.attendees / event.maxAttendees) * 100;
+
+  const handleShareEvent = async () => {
+    setIsSharing(true);
+
+    const eventUrl = `${
+      window.location.origin
+    }/events?event=${encodeURIComponent(event.title)}`;
+    const shareData = {
+      title: event.title,
+      text: `Check out this event: ${event.title} on ${formatDate(
+        event.date
+      )} at ${event.location}`,
+      url: eventUrl,
+    };
+
+    try {
+      // Try using Web Share API if available (mobile devices)
+      if (navigator.share) {
+        await navigator.share(shareData);
+        toast.success("Shared successfully!", {
+          description: "Event has been shared.",
+        });
+      } else {
+        // Fallback: Copy to clipboard
+        await navigator.clipboard.writeText(
+          `${shareData.title}\n\n${shareData.text}\n\n${eventUrl}`
+        );
+        toast.success("Link copied!", {
+          description: "Event link has been copied to clipboard.",
+        });
+      }
+    } catch (error) {
+      // User cancelled share or clipboard failed
+      if (error instanceof Error && error.name !== "AbortError") {
+        toast.error("Unable to share", {
+          description: "Please try again.",
+        });
+      }
+    } finally {
+      setIsSharing(false);
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -212,8 +259,14 @@ export function EventDetailModal({
               </Button>
             )}
             {!isPastEvent && (
-              <Button variant="outline" className="flex-1 cursor-pointer">
-                Share Event
+              <Button
+                variant="outline"
+                className="flex-1 cursor-pointer"
+                onClick={handleShareEvent}
+                disabled={isSharing}
+              >
+                <Share2 className="mr-2 h-4 w-4" />
+                {isSharing ? "Sharing..." : "Share Event"}
               </Button>
             )}
           </div>

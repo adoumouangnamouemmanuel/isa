@@ -23,25 +23,25 @@ export default function ContactPage() {
         </div>
 
         {/* Additional CTA Section */}
-        <div className="mt-16 text-center max-w-3xl mx-auto">
-          <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background p-8 lg:p-12 rounded-2xl border border-primary/20 shadow-lg">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+        <div className="mt-12 sm:mt-16 text-center max-w-3xl mx-auto">
+          <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background p-6 sm:p-8 lg:p-12 rounded-xl sm:rounded-2xl border border-primary/20 shadow-lg">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-3 sm:mb-4">
               Join Our Community Today
             </h2>
-            <p className="text-muted-foreground mb-6 text-lg">
+            <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg">
               Experience the warmth of our global family and make your
               university journey unforgettable.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row gap-2 sm:gap-4 justify-center">
               <a
                 href="/events"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-primary text-primary-foreground text-xs sm:text-sm lg:text-base font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
               >
                 View Events
               </a>
               <a
                 href="/members"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-semibold hover:bg-primary/10 transition-colors"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-primary text-primary text-xs sm:text-sm lg:text-base font-semibold hover:bg-primary/10 transition-colors"
               >
                 Meet Members
               </a>

@@ -39,7 +39,7 @@ export function UpcomingEventsSection() {
               <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-2xl -z-10 animate-pulse"></div>
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
             Join us for exciting events that celebrate diversity, build
             community, and support your academic and professional growth at
             Ashesi University.

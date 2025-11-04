@@ -24,7 +24,7 @@ export function ContactHeader() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-primary/5 via-primary/10 to-background py-20 border-b overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary/5 via-primary/10 to-background py-12 sm:py-16 border-b overflow-hidden">
       {/* Background Images Carousel */}
       <div className="absolute inset-0">
         {backgroundImages.map((image, index) => (
@@ -50,36 +50,36 @@ export function ContactHeader() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white/10 backdrop-blur-sm p-4 rounded-2xl border border-white/20">
-              <MessageSquare className="h-12 w-12 text-white" />
+          <div className="flex justify-center mb-4">
+            <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/20">
+              <MessageSquare className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
             </div>
           </div>
 
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Get in Touch
           </h1>
-          <p className="mb-10 text-lg text-white/90 max-w-2xl mx-auto">
+          <p className="mb-6 text-sm sm:text-base text-white/90 max-w-2xl mx-auto">
             Have questions or want to get involved? We&apos;d love to hear from
             you
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
-              <Mail className="h-4 w-4 text-white" />
-              <span className="text-sm font-medium text-white">
+          <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full border border-white/20 shadow-sm">
+              <Mail className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-medium text-white">
                 Quick Response
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
-              <Phone className="h-4 w-4 text-white" />
-              <span className="text-sm font-medium text-white">
+            <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full border border-white/20 shadow-sm">
+              <Phone className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-medium text-white">
                 24/7 Support
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20 shadow-sm">
-              <MessageSquare className="h-4 w-4 text-white" />
-              <span className="text-sm font-medium text-white">
+            <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-full border border-white/20 shadow-sm">
+              <MessageSquare className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-medium text-white">
                 Open Communication
               </span>
             </div>

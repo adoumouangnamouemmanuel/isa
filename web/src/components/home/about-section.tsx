@@ -84,7 +84,7 @@ export function AboutSection() {
             </span>
           </h2>
 
-          <p className="text-lg sm:text-xl text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
             The International Students Association is a vibrant community
             dedicated to fostering cross-cultural understanding and empowering
             international students at Ashesi University. We are more than just

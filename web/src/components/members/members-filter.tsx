@@ -141,16 +141,16 @@ export function MembersFilter() {
     selectedCountry !== "All Countries";
 
   return (
-    <div className="mb-10 space-y-6">
+    <div className="mb-8 space-y-4">
       {/* Enhanced Filter Header */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20">
-            <SlidersHorizontal className="h-5 w-5 text-primary" />
+      <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20">
+            <SlidersHorizontal className="h-4 w-4 text-primary" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-foreground">Find Members</h2>
-            <p className="text-sm text-muted-foreground">
+            <h2 className="text-lg font-bold text-foreground">Find Members</h2>
+            <p className="text-xs text-muted-foreground hidden sm:block">
               Filter by name, role, major, and more
             </p>
           </div>
@@ -160,42 +160,42 @@ export function MembersFilter() {
             variant="outline"
             size="sm"
             onClick={clearFilters}
-            className="border-primary/20 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300"
+            className="border-primary/20 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300 text-xs h-8"
           >
-            <X className="mr-2 h-4 w-4" />
-            Clear all filters
+            <X className="mr-1.5 h-3.5 w-3.5" />
+            Clear filters
           </Button>
         )}
       </div>
 
       {/* Enhanced Search Bar */}
-      <div className="relative max-w-2xl group">
-        <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground group-hover:text-primary transition-colors" />
+      <div className="relative group">
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground group-hover:text-primary transition-colors" />
         <Input
-          placeholder="Search members by name, country, or interest..."
+          placeholder="Search by name, country..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-12 h-12 text-base border-border/50 focus:border-primary/50 bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300"
+          className="pl-10 h-10 text-sm border-border/50 focus:border-primary/50 bg-card/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery("")}
-            className="absolute right-4 top-1/2 -translate-y-1/2 h-6 w-6 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
           >
-            <X className="h-4 w-4 text-muted-foreground" />
+            <X className="h-3.5 w-3.5 text-muted-foreground" />
           </button>
         )}
       </div>
 
       {/* Enhanced Filter Dropdowns */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+            <div className="h-1 w-1 rounded-full bg-primary" />
             Role
           </label>
           <Select value={selectedRole} onValueChange={setSelectedRole}>
-            <SelectTrigger className="border-border/50 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm">
+            <SelectTrigger className="h-9 text-xs border-border/50 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -208,13 +208,13 @@ export function MembersFilter() {
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-secondary" />
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+            <div className="h-1 w-1 rounded-full bg-secondary" />
             Major
           </label>
           <Select value={selectedMajor} onValueChange={setSelectedMajor}>
-            <SelectTrigger className="border-border/50 hover:border-secondary/50 transition-colors bg-card/50 backdrop-blur-sm">
+            <SelectTrigger className="h-9 text-xs border-border/50 hover:border-secondary/50 transition-colors bg-card/50 backdrop-blur-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -227,13 +227,13 @@ export function MembersFilter() {
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-accent" />
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+            <div className="h-1 w-1 rounded-full bg-accent" />
             Year Level
           </label>
           <Select value={selectedYear} onValueChange={setSelectedYear}>
-            <SelectTrigger className="border-border/50 hover:border-accent/50 transition-colors bg-card/50 backdrop-blur-sm">
+            <SelectTrigger className="h-9 text-xs border-border/50 hover:border-accent/50 transition-colors bg-card/50 backdrop-blur-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -246,13 +246,13 @@ export function MembersFilter() {
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+        <div className="space-y-1.5">
+          <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+            <div className="h-1 w-1 rounded-full bg-primary" />
             Country
           </label>
           <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-            <SelectTrigger className="border-border/50 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm">
+            <SelectTrigger className="h-9 text-xs border-border/50 hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm">
               <SelectValue placeholder="Select country" />
             </SelectTrigger>
             <SelectContent className="max-h-[300px]">
@@ -275,49 +275,49 @@ export function MembersFilter() {
 
       {/* Enhanced Active Filters */}
       {hasActiveFilters && (
-        <div className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 border border-primary/10">
-          <span className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <Filter className="h-4 w-4 text-primary" />
-            Active Filters:
+        <div className="flex flex-wrap items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 border border-primary/10">
+          <span className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+            <Filter className="h-3.5 w-3.5 text-primary" />
+            Active:
           </span>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {searchQuery && (
               <Badge
                 variant="secondary"
-                className="text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+                className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
               >
-                <Sparkles className="mr-1 h-3 w-3" />
+                <Sparkles className="mr-1 h-2.5 w-2.5" />
                 &quot;{searchQuery}&quot;
               </Badge>
             )}
             {selectedRole !== "All Roles" && (
               <Badge
                 variant="secondary"
-                className="text-xs bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 transition-colors"
+                className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 transition-colors"
               >
-                Role: {selectedRole}
+                {selectedRole}
               </Badge>
             )}
             {selectedMajor !== "All Majors" && (
               <Badge
                 variant="secondary"
-                className="text-xs bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 transition-colors"
+                className="text-[10px] px-2 py-0.5 bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 transition-colors"
               >
-                Major: {selectedMajor}
+                {selectedMajor}
               </Badge>
             )}
             {selectedYear !== "All Years" && (
               <Badge
                 variant="secondary"
-                className="text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+                className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
               >
-                Year: {selectedYear}
+                {selectedYear}
               </Badge>
             )}
             {selectedCountry !== "All Countries" && (
               <Badge
                 variant="secondary"
-                className="text-xs bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 transition-colors"
+                className="text-[10px] px-2 py-0.5 bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 transition-colors"
               >
                 {selectedCountry}
               </Badge>

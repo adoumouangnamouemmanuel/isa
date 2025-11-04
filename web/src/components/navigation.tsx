@@ -163,32 +163,32 @@ export function Navigation() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[320px] sm:w-[400px] bg-background/95 backdrop-blur-xl border-l border-border/50"
+                className="w-[280px] sm:w-[320px] bg-background/95 backdrop-blur-xl border-l border-border/50"
               >
                 <div className="flex flex-col h-full">
                   {/* Mobile Menu Header */}
-                  <div className="flex items-center space-x-3 mb-8 pb-6 border-b border-border/50">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl overflow-hidden shadow-lg">
+                  <div className="flex items-center space-x-2.5 mb-6 pb-4 border-b border-border/50">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg overflow-hidden shadow-lg">
                       <Image
                         src="/icons/logo.png"
                         alt="ISA Logo"
-                        width={48}
-                        height={48}
-                        className="object-contain"
+                        width={40}
+                        height={40}
+                        className="object-contain bg-white"
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-2xl font-black text-foreground">
+                      <span className="text-xl font-black text-foreground">
                         ISA
                       </span>
-                      <span className="text-xs font-semibold text-muted-foreground">
+                      <span className="text-[10px] font-semibold text-muted-foreground">
                         Ashesi University
                       </span>
                     </div>
                   </div>
 
                   {/* Mobile Menu Items */}
-                  <div className="flex flex-col space-y-2 flex-1">
+                  <div className="flex flex-col space-y-1.5 flex-1">
                     {navigation.map((item) => {
                       const Icon = item.icon;
                       const isActive = pathname === item.href;
@@ -198,22 +198,22 @@ export function Navigation() {
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "relative flex items-center space-x-3 px-5 py-4 rounded-xl text-base font-semibold transition-all duration-300",
+                            "relative flex items-center space-x-2.5 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-300",
                             isActive
-                              ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-lg scale-105"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted/80 hover:scale-105"
+                              ? "bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-md"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
                           )}
                         >
                           <Icon
                             className={cn(
-                              "h-5 w-5",
+                              "h-4 w-4 shrink-0",
                               isActive && "animate-pulse"
                             )}
                           />
                           <span>{item.name}</span>
                           {isActive && (
-                            <div className="absolute right-4">
-                              <div className="h-2 w-2 rounded-full bg-primary-foreground animate-pulse"></div>
+                            <div className="absolute right-3">
+                              <div className="h-1.5 w-1.5 rounded-full bg-primary-foreground animate-pulse"></div>
                             </div>
                           )}
                         </Link>
@@ -222,43 +222,43 @@ export function Navigation() {
                   </div>
 
                   {/* Mobile Menu Footer */}
-                  <div className="pt-6 border-t border-border/50 space-y-3">
+                  <div className="pt-4 border-t border-border/50 space-y-2.5">
                     {user ? (
                       <div className="space-y-2">
                         <Button
                           asChild
                           variant="outline"
-                          className="w-full h-12 text-base"
+                          className="w-full h-10 text-sm"
                         >
                           <Link
                             href="/profile"
                             onClick={() => setIsOpen(false)}
                             className="flex items-center justify-center"
                           >
-                            <Users className="mr-2 h-5 w-5" />
+                            <Users className="mr-2 h-4 w-4" />
                             View Profile
                           </Link>
                         </Button>
-                        <p className="text-xs text-center text-muted-foreground px-4">
-                          Logged in as {user.email}
+                        <p className="text-[10px] text-center text-muted-foreground px-3 truncate">
+                          {user.email}
                         </p>
                       </div>
                     ) : (
                       <>
                         <Button
                           asChild
-                          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg h-12 text-base"
+                          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-bold shadow-lg h-10 text-sm"
                         >
                           <Link
                             href="/join"
                             onClick={() => setIsOpen(false)}
                             className="flex items-center justify-center"
                           >
-                            <Sparkles className="mr-2 h-5 w-5" />
+                            <Sparkles className="mr-2 h-4 w-4" />
                             Join ISA Today
                           </Link>
                         </Button>
-                        <p className="text-xs text-center text-muted-foreground px-4">
+                        <p className="text-[10px] text-center text-muted-foreground px-3 leading-tight">
                           Join our community of 500+ international students
                         </p>
                       </>

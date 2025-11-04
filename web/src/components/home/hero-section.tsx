@@ -49,11 +49,10 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="mx-auto max-w-5xl text-center">
-
           {/* Main Title */}
-          <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl text-white drop-shadow-lg leading-tight">
+          <h1 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl xl:text-5xl text-white drop-shadow-lg leading-tight">
             Ashesi University
             <br />
             <span className="bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
@@ -62,34 +61,34 @@ export function HeroSection() {
           </h1>
 
           {/* Description */}
-          <p className="mb-10 text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="mb-6 text-sm sm:text-base lg:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
             Join a vibrant community of students from over 30 countries.
             Experience diverse cultures, build lasting friendships, and shape
             the future together.
           </p>
 
           {/* Stats Pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10 max-w-3xl mx-auto">
-            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
-              <div className="flex items-center space-x-2 text-white">
-                <Users className="h-3.5 w-3.5 text-accent" />
-                <span className="text-xs sm:text-sm font-medium">
+          <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-3xl mx-auto">
+            <div className="glass-effect px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-1.5 text-white">
+                <Users className="h-3 w-3 text-accent" />
+                <span className="text-[10px] sm:text-xs font-medium">
                   500+ Members
                 </span>
               </div>
             </div>
-            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
-              <div className="flex items-center space-x-2 text-white">
-                <Globe className="h-3.5 w-3.5 text-secondary" />
-                <span className="text-xs sm:text-sm font-medium">
+            <div className="glass-effect px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-1.5 text-white">
+                <Globe className="h-3 w-3 text-secondary" />
+                <span className="text-[10px] sm:text-xs font-medium">
                   30+ Countries
                 </span>
               </div>
             </div>
-            <div className="glass-effect px-4 py-2 rounded-full border border-white/20 backdrop-blur-md">
-              <div className="flex items-center space-x-2 text-white">
-                <TrendingUp className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs sm:text-sm font-medium">
+            <div className="glass-effect px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
+              <div className="flex items-center space-x-1.5 text-white">
+                <TrendingUp className="h-3 w-3 text-primary" />
+                <span className="text-[10px] sm:text-xs font-medium">
                   6+ Events/Year
                 </span>
               </div>
@@ -97,26 +96,26 @@ export function HeroSection() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-row gap-2 sm:gap-3 justify-center items-center mb-8">
             <Button
               asChild
-              size="lg"
-              className="group bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+              className="group bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105 h-9 text-xs px-4 sm:h-11 sm:text-base sm:px-6"
             >
               <Link href="/join" className="flex items-center">
-                Join ISA Today
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <span className="hidden xs:inline">Join ISA Today</span>
+                <span className="xs:hidden">Join ISA</span>
+                <ArrowRight className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button
               asChild
-              size="lg"
               variant="outline"
-              className="glass-effect text-white border-white/40 hover:border-white/60 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
+              className="glass-effect text-white border-white/40 hover:border-white/60 backdrop-blur-md hover:bg-white/10 transition-all duration-300 h-9 text-xs px-4 sm:h-11 sm:text-base sm:px-6"
             >
               <Link href="/events" className="flex items-center">
-                <Play className="mr-2 h-4 w-4" />
-                Explore Events
+                <Play className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <span className="hidden xs:inline">Explore Events</span>
+                <span className="xs:hidden">Events</span>
               </Link>
             </Button>
           </div>

@@ -126,6 +126,17 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Reduced placeholder opacity for better UX */
+  input::placeholder,
+  textarea::placeholder {
+    @apply opacity-40;
+  }
+
+  input:focus::placeholder,
+  textarea:focus::placeholder {
+    @apply opacity-30;
+  }
 }
 
 /* Enhanced premium animation utilities */

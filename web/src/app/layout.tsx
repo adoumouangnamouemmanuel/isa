@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type React from "react";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({
@@ -126,6 +127,7 @@ export default function RootLayout({
           <div className="relative min-h-screen flex flex-col bg-background text-foreground">
             <LayoutWrapper>{children}</LayoutWrapper>
           </div>
+          <Toaster />
         </ThemeProvider>
 
         {/* Analytics */}

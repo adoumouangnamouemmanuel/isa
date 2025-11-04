@@ -41,7 +41,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
         return "default";
       case "Secretary":
       case "Treasurer":
-        case "Event Organizer":
+      case "Event Organizer":
         return "secondary";
       default:
         return "outline";
@@ -57,10 +57,10 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Minimal Content */}
-      <div className="relative p-6 text-center space-y-4">
+      <div className="relative p-4 text-center space-y-2.5">
         {/* Avatar */}
         <div className="relative inline-block">
-          <Avatar className="h-24 w-24 mx-auto ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all duration-300">
+          <Avatar className="h-20 w-20 mx-auto ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all duration-300">
             <AvatarImage
               src={member.avatar || "/placeholder.svg"}
               alt={member.name}
@@ -76,40 +76,41 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
 
         {/* Name */}
         <div>
-          <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+          <h3 className="text-base font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1">
             {member.name}
           </h3>
-          <div className="flex items-center justify-center gap-2 flex-wrap">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap">
             <Badge
               variant={getRoleBadgeVariant(member.role)}
-              className="text-xs"
+              className="text-[10px] px-2 py-0.5"
             >
               {member.role}
             </Badge>
             <Badge
               variant="outline"
-              className="text-xs border-primary/30 bg-primary/5"
+              className="text-[10px] px-2 py-0.5 border-primary/30 bg-primary/5"
             >
-              Class of {member.year}
+              {member.year}
             </Badge>
           </div>
         </div>
 
         {/* Country & Major */}
-        <div className="space-y-2 text-sm text-muted-foreground">
-          <div className="flex items-center justify-center gap-2">
-            <Globe className="h-4 w-4 text-primary" />
-            <span>{getCountryDisplay()}</span>
+        <div className="space-y-1 text-xs text-muted-foreground">
+          <div className="flex items-center justify-center gap-1">
+            <Globe className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+            <span className="line-clamp-1">{getCountryDisplay()}</span>
           </div>
-          <div className="flex items-center justify-center gap-2">
-            <GraduationCap className="h-4 w-4 text-secondary" />
-            <span>{member.major}</span>
+          <div className="flex items-start justify-center gap-1">
+            <GraduationCap className="h-3.5 w-3.5 text-secondary flex-shrink-0 mt-0.5" />
+            <span className="line-clamp-2 text-center">{member.major}</span>
           </div>
         </div>
 
         {/* View Profile Button */}
         <Button
-          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold transition-all duration-300 cursor-pointer"
+          size="sm"
+          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground text-xs font-semibold transition-all duration-300 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             handleClick();
