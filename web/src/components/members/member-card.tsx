@@ -41,6 +41,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
         return "default";
       case "Secretary":
       case "Treasurer":
+        case "Event Organizer":
         return "secondary";
       default:
         return "outline";

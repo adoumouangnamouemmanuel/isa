@@ -15,7 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { AlertCircle, CheckCircle, Send } from "lucide-react";
 import { useState } from "react";
 
 interface FormData {
@@ -48,6 +49,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -88,27 +90,83 @@ export function ContactForm() {
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Get EmailJS credentials from environment variables
+      const serviceId = "service_prgg2nd";
+      const templateId = "template_eqzxjkn";
+      const publicKey = "Yts-HGoNpktINp73c";
 
-    // console.log("[v0] Contact form submitted:", formData);
+      // Check if all EmailJS credentials are configured
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "EmailJS is not configured. Please add the required environment variables."
+        );
+      }
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      // Format category for display
+      const categoryLabels: Record<string, string> = {
+        general: "General Inquiry",
+        membership: "Membership",
+        events: "Events",
+        volunteer: "Volunteer Opportunities",
+        partnership: "Partnership",
+        feedback: "Feedback",
+        support: "Support",
+      };
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        category: "",
-        message: "",
-        subscribe: false,
+      // Format current date and time
+      const now = new Date();
+      const formattedTime = now.toLocaleString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
       });
-    }, 3000);
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        category: categoryLabels[formData.category] || formData.category,
+        message: formData.message,
+        subscribe: formData.subscribe ? "Yes" : "No",
+        time: formattedTime,
+        reply_to: formData.email,
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          category: "",
+          message: "",
+          subscribe: false,
+        });
+      }, 3000);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setIsSubmitting(false);
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again later."
+      );
+    }
   };
 
   const handleInputChange = (
@@ -331,6 +389,13 @@ export function ContactForm() {
               </p>
             </div>
           </div>
+
+          {submitError && (
+            <div className="flex items-center gap-2 p-4 rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 animate-fade-in">
+              <AlertCircle className="h-5 w-5 flex-shrink-0" />
+              <p className="text-sm">{submitError}</p>
+            </div>
+          )}
 
           <Button
             type="submit"
