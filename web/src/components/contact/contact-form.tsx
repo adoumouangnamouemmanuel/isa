@@ -241,7 +241,7 @@ export function ContactForm() {
                 className={`h-11 transition-all duration-200 border-2 bg-background ${
                   errors.name
                     ? "border-red-500 focus-visible:ring-red-500"
-                    : "border-border hover:border-primary/50 focus-visible:ring-primary focus-visible:border-primary"
+                    : "border-border hover:border-primary/50 focus-visible:border-primary"
                 }`}
               />
               {errors.name && (
@@ -265,7 +265,7 @@ export function ContactForm() {
                 className={`h-11 transition-all duration-200 border-2 bg-background ${
                   errors.email
                     ? "border-red-500 focus-visible:ring-red-500"
-                    : "border-border hover:border-primary/50 focus-visible:ring-primary focus-visible:border-primary"
+                    : "border-border hover:border-primary/50 focus-visible:border-primary"
                 }`}
               />
               {errors.email && (
@@ -290,7 +290,7 @@ export function ContactForm() {
               className={`h-11 transition-all duration-200 border-2 bg-background ${
                 errors.subject
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : "border-border hover:border-primary/50 focus-visible:ring-primary focus-visible:border-primary"
+                  : "border-border hover:border-primary/50 focus-visible:border-primary"
               }`}
             />
             {errors.subject && (
@@ -357,7 +357,7 @@ export function ContactForm() {
               className={`transition-all duration-200 resize-none border-2 bg-background ${
                 errors.message
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : "border-border hover:border-primary/50 focus-visible:ring-primary focus-visible:border-primary"
+                  : "border-border hover:border-primary/50 focus-visible:border-primary"
               }`}
             />
             {errors.message && (
