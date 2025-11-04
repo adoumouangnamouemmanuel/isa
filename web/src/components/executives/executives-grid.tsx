@@ -104,7 +104,7 @@ const executives: Executive[] = [
     id: 8,
     name: "Raicha Adamou Ibrahim",
     position: "West Africa Rep",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/executives_pictures/raicha.jpg",
     country: "Niger",
     major: "Management Information Systems",
     classYear: "2027",
