@@ -188,3 +188,70 @@ export async function resetPassword(email: string) {
 
   return { success: true, message: "Password reset email sent successfully" };
 }
+
+export async function deleteAccount(password: string) {
+  const supabase = await createClient();
+
+  // Get current user
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user?.email) {
+    return { error: "No user found" };
+  }
+
+  // Verify password before deletion
+  const { error: verifyError } = await supabase.auth.signInWithPassword({
+    email: user.email,
+    password: password,
+  });
+
+  if (verifyError) {
+    return { error: "Password is incorrect. Account deletion cancelled." };
+  }
+
+  try {
+    // Delete profile image from storage if exists
+    const { data: files } = await supabase.storage
+      .from("profile-images")
+      .list(user.id);
+
+    if (files && files.length > 0) {
+      const filePaths = files.map((file) => `${user.id}/${file.name}`);
+      await supabase.storage.from("profile-images").remove(filePaths);
+    }
+
+    // Delete profile record from database
+    const { error: profileError } = await supabase
+      .from("profiles")
+      .delete()
+      .eq("id", user.id);
+
+    if (profileError) {
+      console.error("Error deleting profile:", profileError);
+    }
+
+    // Delete the user account
+    // This uses Supabase's self-service account deletion
+    const { error: deleteError } = await supabase.auth.updateUser({
+      data: { deleted: true, deleted_at: new Date().toISOString() },
+    });
+
+    if (deleteError) {
+      throw deleteError;
+    }
+
+    // Sign out
+    await supabase.auth.signOut();
+    revalidatePath("/", "layout");
+
+    return { success: true, message: "Account deleted successfully" };
+  } catch (error) {
+    console.error("Delete account error:", error);
+    return {
+      error:
+        "Failed to delete account. Please contact support or try again later.",
+    };
+  }
+}
