@@ -1,6 +1,6 @@
 "use client";
 
-import { getUser } from "@/app/actions/auth";
+import { getUser, signOut } from "@/app/actions/auth";
 import { getProfileImageUrl } from "@/app/actions/storage";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import {
   Calendar,
   Home,
   Image as ImageIcon,
+  LogOut,
   Menu,
   Phone,
   Shield,
@@ -270,6 +271,17 @@ export function Navigation() {
                             </svg>
                             Settings
                           </Link>
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="w-full h-10 text-sm border-destructive/30 text-destructive hover:bg-destructive/10"
+                          onClick={async () => {
+                            setIsOpen(false);
+                            await signOut();
+                          }}
+                        >
+                          <LogOut className="mr-2 h-4 w-4" />
+                          Logout
                         </Button>
                         <p className="text-[10px] text-center text-muted-foreground px-3 truncate">
                           {user.email}

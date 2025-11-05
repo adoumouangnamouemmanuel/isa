@@ -17,8 +17,8 @@ import {
 const categories = [
   { name: "All", icon: PartyPopper },
   { name: "Cultural", icon: Users },
-  { name: "Professional", icon: Briefcase },
   { name: "Social", icon: PartyPopper },
+  { name: "Professional", icon: Briefcase },
   { name: "Academic", icon: BookOpen },
 ];
 

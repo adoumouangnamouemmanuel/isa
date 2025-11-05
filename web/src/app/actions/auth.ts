@@ -21,6 +21,9 @@ export async function signUp(formData: {
     email: formData.email,
     password: formData.password,
     options: {
+      emailRedirectTo: `${
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+      }/auth/callback`,
       data: {
         first_name: formData.firstName,
         last_name: formData.lastName,
@@ -164,6 +167,11 @@ export async function resendVerificationEmail(email: string) {
   const { error } = await supabase.auth.resend({
     type: "signup",
     email,
+    options: {
+      emailRedirectTo: `${
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+      }/auth/callback`,
+    },
   });
 
   if (error) {
