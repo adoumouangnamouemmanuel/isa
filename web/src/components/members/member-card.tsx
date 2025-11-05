@@ -82,7 +82,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
           <div className="flex items-center justify-center gap-1.5 flex-wrap">
             <Badge
               variant={getRoleBadgeVariant(member.role)}
-              className="text-[10px] px-2 py-0.5"
+              className="text-[8px] px-2 py-0.5"
             >
               {member.role}
             </Badge>
@@ -103,7 +103,7 @@ export function MemberCard({ member, onViewProfile }: MemberCardProps) {
           </div>
           <div className="flex items-start justify-center gap-1">
             <GraduationCap className="h-3.5 w-3.5 text-secondary flex-shrink-0 mt-0.5" />
-            <span className="line-clamp-2 text-center">{member.major}</span>
+            <span className="line-clamp-2 text-center text-[9px]">{member.major}</span>
           </div>
         </div>
 

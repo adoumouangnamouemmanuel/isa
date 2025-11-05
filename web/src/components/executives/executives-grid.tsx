@@ -118,7 +118,7 @@ const executives: Executive[] = [
     position: "Central Africa Rep",
     image: "/executives_pictures/brenda.jpg",
     country: "Cameroon",
-    major: "Management Information Systems",
+    major: "Mechanical Engineering",
     classYear: "2027",
     category: "regional",
     email: "brenda.nyah@ashesi.edu.gh",
@@ -161,7 +161,7 @@ export function ExecutivesGrid() {
             Guiding the vision and direction of ISA
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
           {leadershipTeam.map((exec, index) => (
             <div
               key={exec.id}
@@ -184,7 +184,7 @@ export function ExecutivesGrid() {
             Managing operations and events
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {executiveTeam.map((exec, index) => (
             <div
               key={exec.id}
@@ -207,7 +207,7 @@ export function ExecutivesGrid() {
             Representing our diverse African regions
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {regionalReps.map((exec, index) => (
             <div
               key={exec.id}
