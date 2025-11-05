@@ -37,50 +37,53 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30 overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30 overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-20 left-20 w-56 h-56 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-20 left-20 w-40 h-40 sm:w-56 sm:h-56 bg-primary/5 rounded-full blur-3xl animate-float"></div>
       <div
-        className="absolute bottom-20 right-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl animate-float"
+        className="absolute bottom-20 right-20 w-48 h-48 sm:w-64 sm:h-64 bg-secondary/5 rounded-full blur-3xl animate-float"
         style={{ animationDelay: "2s" }}
       ></div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced Section Header */}
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <div className="inline-flex items-center space-x-2 mb-6 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-            <MessageCircle className="h-4 w-4 text-primary" />
-            <span className="text-sm font-bold text-primary">
+        <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-12 lg:mb-16">
+          <div className="inline-flex items-center space-x-1.5 sm:space-x-2 mb-4 sm:mb-6 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-primary/10 border border-primary/20">
+            <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+            <span className="text-xs sm:text-sm font-bold text-primary">
               Member Stories
             </span>
           </div>
 
-          <h2 className="mb-6 text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance leading-tight">
+          <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-foreground text-balance leading-tight">
             What Our Members{" "}
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Say
             </span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
             Hear from international students who have found their community and
             transformed their Ashesi experience through ISA.
           </p>
 
           {/* Rating Summary */}
-          <div className="flex items-center justify-center space-x-2 mt-8">
-            <div className="flex space-x-1">
+          <div className="flex items-center justify-center space-x-1.5 sm:space-x-2 mt-6 sm:mt-8">
+            <div className="flex space-x-0.5 sm:space-x-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 text-accent fill-accent" />
+                <Star
+                  key={i}
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-accent fill-accent"
+                />
               ))}
             </div>
-            <span className="text-sm font-semibold text-foreground">
+            <span className="text-xs sm:text-sm font-semibold text-foreground">
               4.9/5 from 200+ members
             </span>
           </div>
         </div>
 
         {/* Enhanced Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
@@ -92,36 +95,39 @@ export function TestimonialsSection() {
               {/* Background Gradient on Hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <CardContent className="relative p-6 lg:p-8">
+              <CardContent className="relative p-4 sm:p-5 lg:p-6 xl:p-8">
                 {/* Quote Icon */}
-                <div className="relative mb-6">
-                  <Quote className="h-10 w-10 text-primary/20 group-hover:text-primary/40 transition-colors duration-300" />
+                <div className="relative mb-4 sm:mb-5 lg:mb-6">
+                  <Quote className="h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 text-primary/20 group-hover:text-primary/40 transition-colors duration-300" />
                   <div className="absolute -top-1 -left-1">
-                    <Quote className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                    <Quote className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
                   </div>
                 </div>
 
                 {/* Rating Stars */}
-                <div className="flex space-x-1 mb-4">
+                <div className="flex space-x-0.5 sm:space-x-1 mb-3 sm:mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-accent fill-accent" />
+                    <Star
+                      key={i}
+                      className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent fill-accent"
+                    />
                   ))}
                 </div>
 
                 {/* Quote Text */}
-                <p className="text-muted-foreground group-hover:text-foreground/90 mb-6 text-pretty leading-relaxed transition-colors duration-300 text-sm lg:text-base">
+                <p className="text-muted-foreground group-hover:text-foreground/90 mb-4 sm:mb-5 lg:mb-6 text-pretty leading-relaxed transition-colors duration-300 text-xs sm:text-sm lg:text-base">
                   &quot;{testimonial.quote}&quot;
                 </p>
 
                 {/* Member Info */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3 sm:space-x-4">
                   <div className="relative">
-                    <Avatar className="h-14 w-14 border-2 border-primary/20 group-hover:border-primary/50 transition-colors duration-300">
+                    <Avatar className="h-12 w-12 sm:h-14 sm:w-14 border-2 border-primary/20 group-hover:border-primary/50 transition-colors duration-300">
                       <AvatarImage
                         src={testimonial.avatar || "/placeholder.svg"}
                         alt={testimonial.name}
                       />
-                      <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-primary-foreground font-bold">
+                      <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-primary-foreground font-bold text-sm sm:text-base">
                         {testimonial.name
                           .split(" ")
                           .map((n) => n[0])
@@ -129,22 +135,22 @@ export function TestimonialsSection() {
                       </AvatarFallback>
                     </Avatar>
                     {/* Verified Badge */}
-                    <div className="absolute -bottom-1 -right-1 bg-accent rounded-full p-1 border-2 border-card">
-                      <Heart className="h-3 w-3 text-white fill-white" />
+                    <div className="absolute -bottom-1 -right-1 bg-accent rounded-full p-0.5 sm:p-1 border-2 border-card">
+                      <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white fill-white" />
                     </div>
                   </div>
 
-                  <div className="flex-1">
-                    <div className="font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-foreground group-hover:text-primary transition-colors duration-300 text-sm sm:text-base truncate">
                       {testimonial.name}
                     </div>
-                    <div className="text-xs text-muted-foreground font-medium">
+                    <div className="text-[10px] sm:text-xs text-muted-foreground font-medium truncate">
                       {testimonial.program}
                     </div>
-                    <div className="text-xs text-muted-foreground flex items-center space-x-2 mt-1">
-                      <span>{testimonial.country}</span>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center space-x-1.5 sm:space-x-2 mt-0.5 sm:mt-1">
+                      <span className="truncate">{testimonial.country}</span>
                       <span>•</span>
-                      <span>{testimonial.year}</span>
+                      <span className="truncate">{testimonial.year}</span>
                     </div>
                   </div>
                 </div>
@@ -152,15 +158,15 @@ export function TestimonialsSection() {
 
               {/* Decorative Corner Element */}
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
-                <Quote className="h-20 w-20 text-foreground" />
+                <Quote className="h-16 w-16 sm:h-20 sm:w-20 text-foreground" />
               </div>
             </Card>
           ))}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground text-sm sm:text-base">
+        <div className="text-center mt-8 sm:mt-10 lg:mt-12">
+          <p className="text-muted-foreground text-xs sm:text-sm lg:text-base">
             Want to share your story?{" "}
             <a
               href="/contact"

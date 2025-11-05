@@ -50,15 +50,15 @@ export function AboutSection() {
   ];
 
   return (
-    <section className="relative py-28 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 xl:py-28 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
       {/* Enhanced Background Elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-20 right-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 bg-primary/5 rounded-full blur-3xl animate-float"></div>
       <div
-        className="absolute bottom-20 left-10 w-56 h-56 bg-secondary/5 rounded-full blur-3xl animate-float"
+        className="absolute bottom-20 left-10 w-40 h-40 sm:w-56 sm:h-56 bg-secondary/5 rounded-full blur-3xl animate-float"
         style={{ animationDelay: "3s" }}
       ></div>
       <div
-        className="absolute top-1/2 right-1/4 w-40 h-40 bg-accent/5 rounded-full blur-2xl animate-float"
+        className="absolute top-1/2 right-1/4 w-32 h-32 sm:w-40 sm:h-40 bg-accent/5 rounded-full blur-2xl animate-float"
         style={{ animationDelay: "1.5s" }}
       ></div>
 
@@ -67,14 +67,14 @@ export function AboutSection() {
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced Section Header */}
-        <div className="mx-auto max-w-5xl text-center mb-20">
-          <div className="inline-flex items-center rounded-full bg-gradient-to-r from-primary/15 via-secondary/10 to-accent/15 px-8 py-3.5 text-sm font-bold text-primary mb-10 shadow-lg border border-primary/20 hover:scale-105 transition-transform duration-300 group">
-            <Sparkles className="mr-2 h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
+        <div className="mx-auto max-w-5xl text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="inline-flex items-center rounded-full bg-gradient-to-r from-primary/15 via-secondary/10 to-accent/15 px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3.5 text-xs sm:text-sm font-bold text-primary mb-6 sm:mb-8 lg:mb-10 shadow-lg border border-primary/20 hover:scale-105 transition-transform duration-300 group">
+            <Sparkles className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:rotate-180 transition-transform duration-500" />
             About Our Community
-            <Globe2 className="ml-2 h-4 w-4 group-hover:rotate-180 transition-transform duration-700" />
+            <Globe2 className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:rotate-180 transition-transform duration-700" />
           </div>
 
-          <h2 className="mb-10 text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl text-balance leading-[1.1]">
+          <h2 className="mb-6 sm:mb-8 lg:mb-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black tracking-tight text-foreground text-balance leading-[1.1]">
             ISA at{" "}
             <span className="relative inline-block group/title">
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
@@ -84,7 +84,7 @@ export function AboutSection() {
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
+          <p className="text-xs sm:text-sm lg:text-base xl:text-lg text-muted-foreground text-pretty leading-relaxed max-w-4xl mx-auto">
             The International Students Association is a vibrant community
             dedicated to fostering cross-cultural understanding and empowering
             international students at Ashesi University. We are more than just
@@ -98,22 +98,22 @@ export function AboutSection() {
           </p>
 
           {/* Value Props */}
-          <div className="flex flex-wrap justify-center gap-4 mt-12">
-            <div className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-primary/50 transition-colors duration-300 group">
-              <Target className="h-4 w-4 text-primary group-hover:scale-110 transition-transform" />
-              <span className="text-sm font-semibold text-foreground">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 lg:gap-4 mt-8 sm:mt-10 lg:mt-12">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 lg:py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-primary/50 transition-colors duration-300 group">
+              <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary group-hover:scale-110 transition-transform" />
+              <span className="text-xs sm:text-sm font-semibold text-foreground">
                 Mission-Driven
               </span>
             </div>
-            <div className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-secondary/50 transition-colors duration-300 group">
-              <Zap className="h-4 w-4 text-secondary group-hover:rotate-12 transition-transform" />
-              <span className="text-sm font-semibold text-foreground">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 lg:py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-secondary/50 transition-colors duration-300 group">
+              <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-secondary group-hover:rotate-12 transition-transform" />
+              <span className="text-xs sm:text-sm font-semibold text-foreground">
                 Impact-Focused
               </span>
             </div>
-            <div className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-accent/50 transition-colors duration-300 group">
-              <Globe2 className="h-4 w-4 text-accent group-hover:rotate-180 transition-transform duration-500" />
-              <span className="text-sm font-semibold text-foreground">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 lg:py-2.5 rounded-full bg-muted/60 border border-border/50 hover:border-accent/50 transition-colors duration-300 group">
+              <Globe2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent group-hover:rotate-180 transition-transform duration-500" />
+              <span className="text-xs sm:text-sm font-semibold text-foreground">
                 Globally Connected
               </span>
             </div>
@@ -121,7 +121,7 @@ export function AboutSection() {
         </div>
 
         {/* Enhanced Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -144,35 +144,35 @@ export function AboutSection() {
                   className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}
                 ></div>
 
-                <CardContent className="relative p-8 lg:p-10 text-center">
+                <CardContent className="relative p-5 sm:p-6 lg:p-8 xl:p-10 text-center">
                   {/* Enhanced Icon Container */}
-                  <div className="mb-8 flex justify-center">
+                  <div className="mb-5 sm:mb-6 lg:mb-8 flex justify-center">
                     <div className="relative">
                       <div
-                        className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} ${feature.iconColor} shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 group-hover:shadow-2xl`}
+                        className={`flex h-16 w-16 sm:h-18 sm:w-18 lg:h-20 lg:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br ${feature.gradient} ${feature.iconColor} shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 group-hover:shadow-2xl`}
                       >
-                        <Icon className="h-10 w-10 group-hover:scale-110 transition-transform duration-300" />
+                        <Icon className="h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 group-hover:scale-110 transition-transform duration-300" />
                       </div>
                       {/* Glow Effect */}
                       <div
-                        className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10`}
+                        className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10`}
                       ></div>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="mb-5 text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="mb-3 sm:mb-4 lg:mb-5 text-lg sm:text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed text-sm lg:text-base group-hover:text-foreground/90 transition-colors duration-300">
+                  <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm lg:text-base group-hover:text-foreground/90 transition-colors duration-300">
                     {feature.description}
                   </p>
 
                   {/* Decorative Element */}
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-                    <Icon className="h-24 w-24 text-foreground" />
+                    <Icon className="h-20 w-20 sm:h-24 sm:w-24 text-foreground" />
                   </div>
                 </CardContent>
               </Card>
