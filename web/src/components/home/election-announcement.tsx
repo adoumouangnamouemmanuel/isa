@@ -92,9 +92,7 @@ export function ElectionAnnouncement() {
                   </div>
                 </div>
                 <p className="text-lg sm:text-xl text-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-                  Are you ready to lead, inspire, and make a lasting impact? The
-                  ISA Executive Council is calling for passionate leaders to
-                  step forward and shape the future of our community.
+                  Step forward and shape the future of ISA. Declaration period ends November 17th.
                 </p>
               </div>
 
@@ -109,9 +107,9 @@ export function ElectionAnnouncement() {
                   <h3 className="font-bold text-lg text-foreground mb-2">
                     Declaration Period
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">Open Now</p>
+                  <p className="text-sm text-muted-foreground mb-2">Nov 13 - 17, 2025</p>
                   <p className="text-xs text-primary font-semibold">
-                    Limited time - Act fast!
+                    Act fast!
                   </p>
                 </Card>
 
@@ -339,141 +337,36 @@ export function ElectionAnnouncement() {
               {/* Main Message */}
               <Card className="p-8 sm:p-10 bg-background shadow-xl mb-8 border-2 border-primary/20">
                 <div className="space-y-6">
-                  <div className="text-center pb-6 border-b border-border">
-                    <h3 className="text-2xl sm:text-3xl font-black text-foreground mb-4">
-                      🎯 Your Leadership Journey Starts Here
-                    </h3>
-                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                      The declaration period is your opportunity to express your
-                      commitment to serving the ISA community. Whether
-                      you&apos;re passionate about organizing unforgettable
-                      events, managing finances, amplifying our voice, or
-                      representing your region, there&apos;s a position for
-                      you.
-                    </p>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
-                    <div className="text-center p-4 rounded-lg bg-primary/5">
-                      <div className="text-3xl mb-2">🌍</div>
-                      <p className="font-semibold text-foreground">Unite</p>
-                      <p className="text-sm text-muted-foreground">
-                        500+ Students
-                      </p>
-                    </div>
-                    <div className="text-center p-4 rounded-lg bg-primary/5">
-                      <div className="text-3xl mb-2">🎉</div>
-                      <p className="font-semibold text-foreground">Organize</p>
-                      <p className="text-sm text-muted-foreground">
-                        Amazing Events
-                      </p>
-                    </div>
-                    <div className="text-center p-4 rounded-lg bg-primary/5">
-                      <div className="text-3xl mb-2">💡</div>
-                      <p className="font-semibold text-foreground">Innovate</p>
-                      <p className="text-sm text-muted-foreground">
-                        New Initiatives
-                      </p>
-                    </div>
-                  </div>
 
                   <div className="bg-primary/5 rounded-xl p-6 sm:p-8 border-2 border-primary/20">
-                    <h4 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                      <FileText className="h-6 w-6 text-primary" />
-                      The Declaration Process
+                    <h4 className="text-xl font-bold text-foreground mb-6 text-center">
+                      📅 Election Timeline
                     </h4>
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-4 group">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground text-lg font-bold flex-shrink-0 group-hover:scale-110 transition-transform">
-                          1
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">
-                            Read the Constitution
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Download and carefully review the ISA Constitution
-                            to understand position requirements and
-                            responsibilities.
-                          </p>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Declaration of Intent</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 13 - 17, 2025</p>
                       </div>
-                      <div className="flex items-start gap-4 group">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground text-lg font-bold flex-shrink-0 group-hover:scale-110 transition-transform">
-                          2
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">
-                            Check Your Eligibility
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Verify that you meet all eligibility criteria for
-                            your desired position (GPA, year level, etc.).
-                          </p>
-                        </div>
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Vetting</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 19, 2025</p>
                       </div>
-                      <div className="flex items-start gap-4 group">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground text-lg font-bold flex-shrink-0 group-hover:scale-110 transition-transform">
-                          3
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">
-                            Submit Your Declaration
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Fill out the declaration form with accurate
-                            information about yourself and your leadership
-                            vision.
-                          </p>
-                        </div>
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Manifesto Reading</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 21, 2025</p>
                       </div>
-                      <div className="flex items-start gap-4 group">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground text-lg font-bold flex-shrink-0 group-hover:scale-110 transition-transform">
-                          4
-                        </div>
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">
-                            Await Review & Prepare
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Your declaration will be reviewed. Approved
-                            candidates will proceed to manifesto reading and
-                            campaigning.
-                          </p>
-                        </div>
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Campaign Period</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 20 - 27, 2025</p>
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-muted/50 rounded-xl p-6 border border-border">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Info className="h-6 w-6 text-primary" />
-                        </div>
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Voting</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 28 - 29, 2025</p>
                       </div>
-                      <div>
-                        <p className="font-bold text-foreground mb-2">
-                          Important Dates & Timeline
-                        </p>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>
-                            • Declaration period opens immediately after ASC
-                            presidency installation
-                          </li>
-                          <li>
-                            • Manifesto reading follows one week after
-                            declaration closes
-                          </li>
-                          <li>
-                            • Campaign period: One week between manifesto
-                            reading and elections
-                          </li>
-                          <li>
-                            • Elections held via secret ballot (virtual or
-                            in-person)
-                          </li>
-                        </ul>
+                      <div className="bg-background rounded-lg p-4 border border-border">
+                        <p className="font-bold text-primary mb-1">Results</p>
+                        <p className="text-sm text-foreground font-semibold">Nov 30, 2025</p>
                       </div>
                     </div>
                   </div>
@@ -483,9 +376,6 @@ export function ElectionAnnouncement() {
               {/* CTA Buttons */}
               <div className="text-center space-y-8">
                 <div className="bg-primary/5 rounded-2xl p-8 border-2 border-primary/20">
-                  <p className="text-lg font-semibold text-foreground mb-6">
-                    Ready to take the next step in your leadership journey?
-                  </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Button
                       asChild
@@ -523,20 +413,9 @@ export function ElectionAnnouncement() {
                   </div>
                 </div>
 
-                <div className="max-w-3xl mx-auto">
-                  <div className="bg-background rounded-xl p-6 border border-border shadow-lg">
-                    <p className="font-semibold text-foreground mb-3 text-lg">
-                      Need Help or Have Questions?
-                    </p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      The current ISA executive team is here to support you
-                      throughout the declaration process. Reach out via email,
-                      visit us during office hours, or connect with your
-                      regional representative for guidance. We&apos;re excited
-                      to see your leadership aspirations come to life!
-                    </p>
-                  </div>
-                </div>
+                <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
+                  Questions? Contact the ISA executive team.
+                </p>
               </div>
             </div>
           </div>
