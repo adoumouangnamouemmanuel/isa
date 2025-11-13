@@ -92,7 +92,8 @@ export function ElectionAnnouncement() {
                   </div>
                 </div>
                 <p className="text-lg sm:text-xl text-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-                  Step forward and shape the future of ISA. Declaration period ends November 17th.
+                  Step forward and shape the future of ISA. Declaration period
+                  ends November 17th.
                 </p>
               </div>
 
@@ -107,7 +108,9 @@ export function ElectionAnnouncement() {
                   <h3 className="font-bold text-lg text-foreground mb-2">
                     Declaration Period
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">Nov 13 - 17, 2025</p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Nov 13 - 17, 2025
+                  </p>
                   <p className="text-xs text-primary font-semibold">
                     Act fast!
                   </p>
@@ -337,36 +340,52 @@ export function ElectionAnnouncement() {
               {/* Main Message */}
               <Card className="p-8 sm:p-10 bg-background shadow-xl mb-8 border-2 border-primary/20">
                 <div className="space-y-6">
-
-
                   <div className="bg-primary/5 rounded-xl p-6 sm:p-8 border-2 border-primary/20">
                     <h4 className="text-xl font-bold text-foreground mb-6 text-center">
                       📅 Election Timeline
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Declaration of Intent</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 13 - 17, 2025</p>
+                        <p className="font-bold text-primary mb-1">
+                          Declaration of Intent
+                        </p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 13 - 17, 2025
+                        </p>
                       </div>
                       <div className="bg-background rounded-lg p-4 border border-border">
                         <p className="font-bold text-primary mb-1">Vetting</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 19, 2025</p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 19, 2025
+                        </p>
                       </div>
                       <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Manifesto Reading</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 21, 2025</p>
+                        <p className="font-bold text-primary mb-1">
+                          Manifesto Reading
+                        </p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 21, 2025
+                        </p>
                       </div>
                       <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Campaign Period</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 20 - 27, 2025</p>
+                        <p className="font-bold text-primary mb-1">
+                          Campaign Period
+                        </p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 20 - 27, 2025
+                        </p>
                       </div>
                       <div className="bg-background rounded-lg p-4 border border-border">
                         <p className="font-bold text-primary mb-1">Voting</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 28 - 29, 2025</p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 28 - 29, 2025
+                        </p>
                       </div>
                       <div className="bg-background rounded-lg p-4 border border-border">
                         <p className="font-bold text-primary mb-1">Results</p>
-                        <p className="text-sm text-foreground font-semibold">Nov 30, 2025</p>
+                        <p className="text-sm text-foreground font-semibold">
+                          Nov 30, 2025
+                        </p>
                       </div>
                     </div>
                   </div>
