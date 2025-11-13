@@ -63,7 +63,7 @@ export function ElectionAnnouncement() {
 
       {/* Main Announcement Card */}
       <div className="bg-muted/30 border-b border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12 lg:py-16">
           <div className="relative">
             {/* Close button */}
             <button
@@ -76,39 +76,39 @@ export function ElectionAnnouncement() {
 
             <div className="max-w-5xl mx-auto">
               {/* Header */}
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-primary text-primary-foreground mb-6 shadow-2xl">
-                  <Vote className="h-12 w-12" />
+              <div className="text-center mb-8 sm:mb-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-24 sm:h-24 rounded-2xl sm:rounded-3xl bg-primary text-primary-foreground mb-4 sm:mb-6 shadow-xl sm:shadow-2xl">
+                  <Vote className="h-8 w-8 sm:h-12 sm:w-12" />
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-4xl lg:text-6xl font-black text-foreground mb-4 sm:mb-6 leading-tight px-2">
                   ISA Elections 2025-2026
                 </h2>
-                <div className="max-w-4xl mx-auto mb-6">
-                  <div className="inline-block bg-primary/10 border-2 border-primary px-6 py-3 rounded-full mb-4">
-                    <p className="text-lg sm:text-xl text-primary font-bold flex items-center gap-2 justify-center">
-                      <CheckCircle2 className="h-5 w-5" />
+                <div className="max-w-4xl mx-auto mb-4 sm:mb-6">
+                  <div className="inline-block bg-primary/10 border-2 border-primary px-3 py-2 sm:px-6 sm:py-3 rounded-full mb-3 sm:mb-4">
+                    <p className="text-sm sm:text-lg text-primary font-bold flex items-center gap-1.5 sm:gap-2 justify-center">
+                      <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" />
                       Declaration of Intent Now Open
                     </p>
                   </div>
                 </div>
-                <p className="text-lg sm:text-xl text-foreground max-w-3xl mx-auto font-medium leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl text-foreground max-w-3xl mx-auto font-medium leading-relaxed px-2">
                   Step forward and shape the future of ISA. Declaration period
                   ends November 17th.
                 </p>
               </div>
 
               {/* Key Information Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <Card className="p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Clock className="h-7 w-7 text-primary" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-10">
+                <Card className="p-4 sm:p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
+                  <div className="flex justify-center mb-3 sm:mb-4">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Clock className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                     </div>
                   </div>
-                  <h3 className="font-bold text-lg text-foreground mb-2">
+                  <h3 className="font-bold text-base sm:text-lg text-foreground mb-1.5 sm:mb-2">
                     Declaration Period
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2">
                     Nov 13 - 17, 2025
                   </p>
                   <p className="text-xs text-primary font-semibold">
@@ -118,13 +118,13 @@ export function ElectionAnnouncement() {
 
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Card className="p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 cursor-pointer group relative">
-                      <div className="absolute top-3 right-3 p-1.5 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                        <Info className="h-4 w-4 text-primary" />
+                    <Card className="p-4 sm:p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50 cursor-pointer group relative">
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1 sm:p-1.5 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        <Info className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                       </div>
-                      <div className="flex justify-center mb-4">
-                        <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <Users2 className="h-7 w-7 text-primary" />
+                      <div className="flex justify-center mb-3 sm:mb-4">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                          <Users2 className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                         </div>
                       </div>
                       <h3 className="font-bold text-lg text-foreground mb-2">
@@ -319,10 +319,10 @@ export function ElectionAnnouncement() {
                   </DialogContent>
                 </Dialog>
 
-                <Card className="p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Vote className="h-7 w-7 text-primary" />
+                <Card className="p-4 sm:p-6 text-center bg-background hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
+                  <div className="flex justify-center mb-3 sm:mb-4">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Vote className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                     </div>
                   </div>
                   <h3 className="font-bold text-lg text-foreground mb-2">
@@ -338,52 +338,58 @@ export function ElectionAnnouncement() {
               </div>
 
               {/* Main Message */}
-              <Card className="p-8 sm:p-10 bg-background shadow-xl mb-8 border-2 border-primary/20">
-                <div className="space-y-6">
-                  <div className="bg-primary/5 rounded-xl p-6 sm:p-8 border-2 border-primary/20">
-                    <h4 className="text-xl font-bold text-foreground mb-6 text-center">
+              <Card className="p-4 sm:p-8 lg:p-10 bg-background shadow-xl mb-6 sm:mb-8 border-2 border-primary/20">
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="bg-primary/5 rounded-xl p-4 sm:p-6 lg:p-8 border-2 border-primary/20">
+                    <h4 className="text-lg sm:text-xl font-bold text-foreground mb-4 sm:mb-6 text-center">
                       📅 Election Timeline
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
                           Declaration of Intent
                         </p>
-                        <p className="text-sm text-foreground font-semibold">
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 13 - 17, 2025
                         </p>
                       </div>
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Vetting</p>
-                        <p className="text-sm text-foreground font-semibold">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
+                          Vetting
+                        </p>
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 19, 2025
                         </p>
                       </div>
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
                           Manifesto Reading
                         </p>
-                        <p className="text-sm text-foreground font-semibold">
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 21, 2025
                         </p>
                       </div>
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
                           Campaign Period
                         </p>
-                        <p className="text-sm text-foreground font-semibold">
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 20 - 27, 2025
                         </p>
                       </div>
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Voting</p>
-                        <p className="text-sm text-foreground font-semibold">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
+                          Voting
+                        </p>
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 28 - 29, 2025
                         </p>
                       </div>
-                      <div className="bg-background rounded-lg p-4 border border-border">
-                        <p className="font-bold text-primary mb-1">Results</p>
-                        <p className="text-sm text-foreground font-semibold">
+                      <div className="bg-background rounded-lg p-3 sm:p-4 border border-border">
+                        <p className="font-bold text-primary mb-1 text-sm sm:text-base">
+                          Results
+                        </p>
+                        <p className="text-xs sm:text-sm text-foreground font-semibold">
                           Nov 30, 2025
                         </p>
                       </div>
@@ -393,23 +399,23 @@ export function ElectionAnnouncement() {
               </Card>
 
               {/* CTA Buttons */}
-              <div className="text-center space-y-8">
-                <div className="bg-primary/5 rounded-2xl p-8 border-2 border-primary/20">
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="text-center space-y-4 sm:space-y-8">
+                <div className="bg-primary/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 border-2 border-primary/20">
+                  <div className="flex flex-col gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
                     <Button
                       asChild
                       size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xl px-14 py-8 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base sm:text-xl px-6 py-6 sm:px-14 sm:py-8 shadow-xl sm:shadow-2xl hover:shadow-2xl sm:hover:shadow-3xl transition-all duration-300 hover:scale-105 group w-full"
                     >
                       <Link
                         href="https://forms.microsoft.com/r/jBfUpZJ8c2"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3"
+                        className="flex items-center justify-center gap-2 sm:gap-3"
                       >
-                        <Vote className="h-7 w-7 group-hover:rotate-12 transition-transform" />
+                        <Vote className="h-5 w-5 sm:h-7 sm:w-7 group-hover:rotate-12 transition-transform" />
                         <span>DECLARE YOUR INTENT NOW</span>
-                        <ArrowRight className="h-7 w-7 group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="h-5 w-5 sm:h-7 sm:w-7 group-hover:translate-x-2 transition-transform" />
                       </Link>
                     </Button>
 
@@ -417,15 +423,15 @@ export function ElectionAnnouncement() {
                       asChild
                       size="lg"
                       variant="outline"
-                      className="border-2 border-primary text-primary hover:bg-primary/10 font-bold text-xl px-14 py-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto"
+                      className="border-2 border-primary text-primary hover:bg-primary/10 font-bold text-base sm:text-xl px-6 py-6 sm:px-14 sm:py-8 shadow-md sm:shadow-lg hover:shadow-lg sm:hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full"
                     >
                       <Link
                         href="/documents/ISA-Constitution.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3"
+                        className="flex items-center justify-center gap-2 sm:gap-3"
                       >
-                        <FileText className="h-7 w-7 group-hover:scale-110 transition-transform" />
+                        <FileText className="h-5 w-5 sm:h-7 sm:w-7 group-hover:scale-110 transition-transform" />
                         <span>VIEW CONSTITUTION</span>
                       </Link>
                     </Button>
