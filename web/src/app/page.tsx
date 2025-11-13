@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/home/about-section";
+import { ElectionAnnouncement } from "@/components/home/election-announcement";
 import { HeroSection } from "@/components/home/hero-section";
 import { JoinSection } from "@/components/home/join-section";
 import { StatsSection } from "@/components/home/stats-section";
@@ -55,6 +56,11 @@ export default function HomePage() {
         {/* Hero Section - Above the fold content */}
         <section aria-label="Hero" className="relative">
           <HeroSection />
+        </section>
+
+        {/* Election Announcement - High Priority */}
+        <section aria-label="Election Announcement" className="relative">
+          <ElectionAnnouncement />
         </section>
 
         {/* About Section */}
